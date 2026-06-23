@@ -23,6 +23,8 @@ LoadModule("Modules/ItemTools")
 LoadModule("Modules/CalcTools")
 LoadModule("Modules/BuildSiteTools")
 
+local itemServer = LoadModule("ItemServer")
+
 --[[if launch.devMode then
 	for skillName, skill in pairs(data.enchantments.Helmet) do
 		for _, mod in ipairs(skill.ENDGAME) do
@@ -79,6 +81,8 @@ function main:Init()
 	if not ignoreBuild then
 		self:SetMode("BUILD", false, "Unnamed build")
 	end
+
+	itemServer.start()
 	if launch.devMode or (GetScriptPath() == GetRuntimePath() and not launch.installedMode) then
 		-- If running in dev mode or standalone mode, put user data in the script path
 		self.userPath = GetScriptPath().."/"
@@ -370,6 +374,10 @@ function main:OnFrame()
 	end
 
 	self:CallMode("OnFrame", self.inputEvents, self.viewPort)
+
+	if self.mode == "BUILD" then
+		itemServer.poll(self.modes["BUILD"])
+	end
 
 	if launch.updateErrMsg then
 		t_insert(self.toastMessages, string.format("Update check failed!\n%s", launch.updateErrMsg))

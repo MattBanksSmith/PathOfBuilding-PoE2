@@ -1,0 +1,50 @@
+{
+    "manifest_version": 3,
+    "name": "PoB Trade Evaluator",
+    "version": "0.1.0",
+    "description": "Evaluate trade site items against your open Path of Building build",
+
+    "host_permissions": [
+        "http://localhost:10600/*"
+    ],
+
+    "content_scripts": [
+        {
+            "matches": [
+                "*://www.pathofexile.com/trade2*",
+                "*://br.pathofexile.com/trade2*",
+                "*://ru.pathofexile.com/trade2*",
+                "*://th.pathofexile.com/trade2*",
+                "*://de.pathofexile.com/trade2*",
+                "*://fr.pathofexile.com/trade2*",
+                "*://es.pathofexile.com/trade2*",
+                "*://jp.pathofexile.com/trade2*",
+                "*://poe.game.daum.net/trade2*"
+            ],
+            "js": ["inject.js"],
+            "run_at": "document_idle",
+            "world": "MAIN"
+        },
+        {
+            "matches": [
+                "*://www.pathofexile.com/trade2*",
+                "*://br.pathofexile.com/trade2*",
+                "*://ru.pathofexile.com/trade2*",
+                "*://th.pathofexile.com/trade2*",
+                "*://de.pathofexile.com/trade2*",
+                "*://fr.pathofexile.com/trade2*",
+                "*://es.pathofexile.com/trade2*",
+                "*://jp.pathofexile.com/trade2*",
+                "*://poe.game.daum.net/trade2*"
+            ],
+            "js": ["content.js"],
+            "css": ["styles.css"],
+            "run_at": "document_idle"
+        }
+    ],
+
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "PoB Trade Evaluator"
+    }
+}

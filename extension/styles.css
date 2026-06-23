@@ -1,0 +1,71 @@
+/* PoB Trade Evaluator — injected styles */
+
+/* ── Evaluate button ──────────────────────────────────────────────────────── */
+
+.pob-eval-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4px;
+    padding: 2px 7px;
+    background: #2a1f0e;
+    border: 1px solid #af6025;
+    border-radius: 3px;
+    color: #af6025;
+    font-family: 'Fontin', serif;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.pob-eval-btn:hover {
+    background: #af6025;
+    color: #fff;
+}
+
+/* ── Result container ─────────────────────────────────────────────────────── */
+
+.pob-eval-result {
+    margin-top: 6px;
+    border-left: 2px solid #af6025;
+    padding-left: 6px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.pob-eval-result.pob-loading {
+    color: #888;
+    border-left-color: #555;
+    font-style: italic;
+}
+
+.pob-eval-result.pob-error {
+    color: #e05050;
+    border-left-color: #e05050;
+}
+
+/* ── Tooltip lines (emitted by the PoB server) ────────────────────────────── */
+
+.pob-tooltip {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.pob-line {
+    white-space: nowrap;
+}
+
+.pob-header {
+    color: #c8c8c8;
+    margin-bottom: 2px;
+    font-style: italic;
+}
+
+/* Matches colorCodes.POSITIVE = ^x33FF77 */
+.pob-pos { color: #33ff77; font-weight: bold; }
+
+/* Matches colorCodes.NEGATIVE = ^xDD0022 */
+.pob-neg { color: #dd0022; font-weight: bold; }
