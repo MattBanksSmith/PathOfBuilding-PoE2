@@ -4,15 +4,15 @@
 console.log('[PoB] inject.js loaded')
 
 const RARITY_MAP = {
-    normalPopup:     'Normal',
-    magicPopup:      'Magic',
-    rarePopup:       'Rare',
-    uniquePopup:     'Unique',
-    gemPopup:        'Gem',
-    currencyPopup:   'Currency',
-    divinationPopup: 'Divination Card',
-    questPopup:      'Quest',
-    relicPopup:      'Relic',
+    'item-popup--normal':     'Normal',
+    'item-popup--magic':      'Magic',
+    'item-popup--rare':       'Rare',
+    'item-popup--unique':     'Unique',
+    'item-popup--gem':        'Gem',
+    'item-popup--currency':   'Currency',
+    'item-popup--divination': 'Divination Card',
+    'item-popup--quest':      'Quest',
+    'item-popup--relic':      'Relic',
 }
 
 function getRarity(popup) {
@@ -27,32 +27,33 @@ function textOf(el) { return el ? el.textContent.trim() : '' }
 function parseItemText(popup) {
     const lines = []
 
-    // Item class — first .property .lc span
-    const itemClassEl = popup.querySelector('.property .lc span')
+    // Item class — first .item-property .lc span
+    const itemClassEl = popup.querySelector('.item-property .lc span')
     if (itemClassEl) lines.push('Item Class: ' + textOf(itemClassEl))
 
     lines.push('Rarity: ' + getRarity(popup))
 
     // Name / type lines
-    popup.querySelectorAll('.itemName .lc').forEach(el => {
+    popup.querySelectorAll('.item-popup__header-line').forEach(el => {
         const t = textOf(el)
         if (t) lines.push(t)
     })
 
     lines.push('--------')
 
-    // Properties (Quality, Armour, etc.) — skip the item-class property and skills
+    // Properties (Quality, Armour, etc.) — skip item class, requirements, item level
     let propAdded = false
     let skipFirst = !!itemClassEl
-    popup.querySelectorAll('.property:not(.skill)').forEach(el => {
+    popup.querySelectorAll('.item-property:not(.item-popup__property--requirements)').forEach(el => {
         if (skipFirst) { skipFirst = false; return }
+        if (el.querySelector('[data-field="ilvl"]')) return
         const t = textOf(el)
         if (t) { lines.push(t); propAdded = true }
     })
     if (propAdded) lines.push('--------')
 
     // Requirements
-    const reqEl = popup.querySelector('.requirements')
+    const reqEl = popup.querySelector('.item-popup__property--requirements')
     if (reqEl) {
         const raw = textOf(reqEl)
         const level = raw.match(/Level[:\s]+(\d+)/)?.[1]
@@ -68,9 +69,9 @@ function parseItemText(popup) {
     }
 
     // Item level
-    const ilvlEl = popup.querySelector('.itemLevel .colourDefault')
+    const ilvlEl = popup.querySelector('[data-field="ilvl"]')
     if (ilvlEl) {
-        lines.push('Item Level: ' + textOf(ilvlEl))
+        lines.push(textOf(ilvlEl))
         lines.push('--------')
     }
 
@@ -84,12 +85,12 @@ function parseItemText(popup) {
         return mods
     }
 
-    const enchants   = addMods('.enchantMod .s',   'enchant')
-    const runes      = addMods('.runeMod .s',       'rune')
-    const implicits  = addMods('.implicitMod .s',   'implicit')
-    const fractured  = addMods('.fracturedMod .s',  'fractured')
-    const explicits  = addMods('.explicitMod .s',   null)
-    const desecrated = addMods('.desecratedMod .s', 'desecrated')
+    const enchants   = addMods('.item-mod--enchant .s',   'enchant')
+    const runes      = addMods('.item-mod--rune .s',      'rune')
+    const implicits  = addMods('.item-mod--implicit .s',  'implicit')
+    const fractured  = addMods('.item-mod--fractured .s', 'fractured')
+    const explicits  = addMods('.item-mod--explicit .s',  null)
+    const desecrated = addMods('.item-mod--desecrated .s','desecrated')
 
     if (enchants.length)   { enchants.forEach(m => lines.push(m));   lines.push('--------') }
     if (runes.length)      { runes.forEach(m => lines.push(m));      lines.push('--------') }
@@ -115,10 +116,10 @@ window.addEventListener('message', (e) => {
         return
     }
 
-    const popup = row.querySelector('.itemPopupContainer')
+    const popup = row.querySelector('.item-popup')
     if (!popup) {
-        console.warn('[PoB] inject.js: no .itemPopupContainer in row', rowId)
-        window.postMessage({ type: 'pob:item-error', rowId, error: 'Item popup container not found' }, '*')
+        console.warn('[PoB] inject.js: no .item-popup in row', rowId)
+        window.postMessage({ type: 'pob:item-error', rowId, error: 'Item popup not found' }, '*')
         return
     }
 
