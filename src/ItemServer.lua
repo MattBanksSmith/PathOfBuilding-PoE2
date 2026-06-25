@@ -128,6 +128,108 @@ local function lap(t0, label)
     return socket.gettime()
 end
 
+-- Mirrors the "else" branch of ItemsTab:AddItemTooltip (ItemsTab.lua, the part
+-- after the flask/charm special cases). An item is often valid in more than one
+-- slot/socket — e.g. a jewel fits several tree sockets, a ring fits Ring 1 or
+-- Ring 2 — and the real Items page shows one stat-compare block per valid slot,
+-- sorted (empty sockets first, then same-base/same-unique, then by DPS/EHP).
+-- Returns the number of comparison blocks added to the tooltip.
+local function addItemComparisons(item, build, calcFunc, calcBase, tooltip)
+    local itemsTab = build.itemsTab
+    itemsTab:UpdateSockets()
+
+    local compareSlots = {}
+    for slotName, slot in pairs(itemsTab.slots) do
+        if itemsTab:IsItemValidForSlot(item, slotName)
+            and not slot.inactive
+            and (not slot.weaponSet or slot.weaponSet == (itemsTab.activeItemSet.useSecondWeaponSet and 2 or 1))
+            and slot.shown()
+        then
+            table.insert(compareSlots, slot)
+        end
+    end
+    if #compareSlots == 0 then
+        return 0
+    end
+
+    local function getReplacedItemAndOutput(compareSlot)
+        local selItem = itemsTab.items[compareSlot.selItemId]
+        local output = calcFunc({ repSlotName = compareSlot.slotName, repItem = item ~= selItem and item or nil })
+        return selItem, output
+    end
+    local function addCompareForSlot(compareSlot, selItem, output)
+        if not selItem or not output then
+            selItem, output = getReplacedItemAndOutput(compareSlot)
+        end
+        local label = compareSlot.label or compareSlot.slotName
+        local header
+        if item == selItem then
+            header = string.format("Removing this item from %s will give you:", label)
+        else
+            header = string.format("Equipping this item in %s will give you:%s",
+                label, selItem and ("\n(replacing " .. selItem.name .. ")") or "")
+        end
+        build:AddStatComparesToTooltip(tooltip, calcBase, output, header)
+    end
+
+    local slots = {}
+    local isUnique = item.rarity == "UNIQUE" or item.rarity == "RELIC"
+    local currentSameUniqueCount = 0
+    for _, compareSlot in ipairs(compareSlots) do
+        local selItem, output = getReplacedItemAndOutput(compareSlot)
+        local isSameUnique = isUnique and selItem and item.name == selItem.name
+        if isUnique and isSameUnique and item.limit then
+            currentSameUniqueCount = currentSameUniqueCount + 1
+        end
+        table.insert(slots, { selItem = selItem, output = output, compareSlot = compareSlot, isSameUnique = isSameUnique })
+    end
+
+    -- Limited uniques (e.g. "Limited to 1"): once the limit is already met by
+    -- other equipped copies, only show the slots holding those copies.
+    if item.limit and currentSameUniqueCount == item.limit then
+        local count = 0
+        for _, slotEntry in ipairs(slots) do
+            if slotEntry.isSameUnique then
+                addCompareForSlot(slotEntry.compareSlot, slotEntry.selItem, slotEntry.output)
+                count = count + 1
+            end
+        end
+        return count
+    end
+
+    local function similar(compareItem, sameUnique)
+        if not compareItem then return 0 end
+        local sameBaseType = not isUnique
+            and compareItem.rarity ~= "UNIQUE" and compareItem.rarity ~= "RELIC"
+            and item.base.type == compareItem.base.type
+            and item.base.subType == compareItem.base.subType
+        return (sameBaseType or sameUnique) and 1 or 0
+    end
+    local function sortFunc(a, b)
+        if a == b then return end
+        local aParams = { a.compareSlot.selItemId == 0 and 1 or 0, similar(a.selItem, a.isSameUnique),
+            a.output.FullDPS, a.output.CombinedDPS, a.output.TotalEHP, a.compareSlot.label, a.compareSlot.slotName }
+        local bParams = { b.compareSlot.selItemId == 0 and 1 or 0, similar(b.selItem, b.isSameUnique),
+            b.output.FullDPS, b.output.CombinedDPS, b.output.TotalEHP, b.compareSlot.label, b.compareSlot.slotName }
+        for i = 1, #aParams do
+            if aParams[i] == nil or bParams[i] == nil then
+                -- continue
+            elseif aParams[i] > bParams[i] then
+                return true
+            elseif aParams[i] < bParams[i] then
+                return false
+            end
+        end
+        return false
+    end
+    table.sort(slots, sortFunc)
+
+    for _, slotEntry in ipairs(slots) do
+        addCompareForSlot(slotEntry.compareSlot, slotEntry.selItem, slotEntry.output)
+    end
+    return #slots
+end
+
 local function evaluateItem(rawText, build)
     local t = socket.gettime()
     ConPrintf("[PoB Trade] evaluateItem: %d chars", #rawText)
@@ -135,7 +237,6 @@ local function evaluateItem(rawText, build)
     if not build.calcsTab or not build.calcsTab.mainOutput then
         return nil, "build has not finished calculating — try again in a moment"
     end
-    local calcs = build.calcsTab.calcs
 
     -- Parse the item text (same path as pasting an item into PoB)
     local ok, item = pcall(new, "Item", rawText)
@@ -150,36 +251,50 @@ local function evaluateItem(rawText, build)
         )
     end
 
+    -- Match ItemsTab:CreateDisplayItemFromRaw(raw, true) — the function that
+    -- actually runs when pasting an item into the Items page (ItemsTab.lua
+    -- Ctrl+V handler). Without these two steps the evaluated item silently
+    -- differs from what the Items page would show:
+    --   * CopyAnointsAndAugments carries over the anoint/runes from whatever
+    --     is currently equipped in the matching slot, if this item has none.
+    --   * The second NormaliseQuality() call bumps quality from 0 up to
+    --     main.defaultItemQuality when the pasted text had no Quality: line
+    --     (the first NormaliseQuality, inside the constructor's ParseRaw,
+    --     only sets it to 0).
+    build.itemsTab:CopyAnointsAndAugments(item, main.migrateAugments, false)
+    item:NormaliseQuality()
     item:BuildModList()
     t = lap(t, "BuildModList()")
 
-    local slotName = item:GetPrimarySlot()
-    ConPrintf("[PoB Trade]   slot: %s", tostring(slotName))
+    -- Use the same calculator every other comparison tooltip in PoB uses
+    -- (ItemsTab, CompareTab, PassiveTreeView, ...). calcBase and the override
+    -- calc are both produced via calcs.initEnv(build, "CALCULATOR"), so the
+    -- two output tables are symmetric. Using build.calcsTab.mainOutput (built
+    -- via mode "MAIN") as the base while comparing against a "CALCULATOR"-less
+    -- override previously caused phantom diffs on MAIN-only fields like
+    -- Spec:EnergyShieldInc ("%Inc ES from Tree"), which only get populated by
+    -- calcs.buildOutput's mode == "MAIN" branch and were missing/0 on one side.
+    local calcFunc, calcBase = build.calcsTab:GetMiscCalculator()
 
-    -- Run a "what-if" calc using the existing override mechanism in CalcSetup
-    -- (repSlotName / repItem are read at line 806 of CalcSetup.lua).
-    -- No slot state is mutated; this is entirely side-effect-free.
-    local override = { repSlotName = slotName, repItem = item }
-    local afterEnv = calcs.initEnv(build, "MAIN", override)
-    t = lap(t, "calcs.initEnv()")
-
-    calcs.perform(afterEnv)
-    t = lap(t, "calcs.perform()")
-
-    -- Delegate ALL comparison logic to the existing PoB function.
-    -- build.displayStats is loaded by Build:Init from BuildDisplayStats.lua and
-    -- contains every stat PoB knows how to compare, including condFuncs,
-    -- lowerIsBetter flags, compPercent formatting, skill-flag guards, etc.
-    local header = string.format("Equipping this item in %s will give you:", slotName)
+    -- Compare against every slot/socket the item is actually valid for (same
+    -- as ItemsTab:AddItemTooltip), not just GetPrimarySlot()'s single guess —
+    -- GetPrimarySlot() returns the literal string "Jewel" for jewels, which
+    -- isn't a real socket name, so a single-slot override would never match
+    -- anything and silently no-op. A ring, for example, may also be valid in
+    -- both Ring 1 and Ring 2. No slot/socket state is mutated; this only
+    -- reads itemsTab.slots/sockets and runs the read-only calc override.
     local tooltip = newHtmlTooltip()
-    build:AddStatComparesToTooltip(tooltip, build.calcsTab.mainOutput, afterEnv.player.output, header)
-    t = lap(t, "AddStatComparesToTooltip()")
+    local count = addItemComparisons(item, build, calcFunc, calcBase, tooltip)
+    t = lap(t, "addItemComparisons()")
+    ConPrintf("[PoB Trade]   slots compared: %d", count)
 
     if tooltip:isEmpty() then
         -- No measurable changes — still return a valid fragment so the
         -- extension has something to display.
         return '<div class="pob-tooltip"><div class="pob-line pob-header">'
-            .. htmlEscape(string.format("No stat changes detected (%s)", slotName))
+            .. htmlEscape(count == 0
+                and "No valid equip slot/socket found for this item"
+                or "No stat changes detected")
             .. '</div></div>'
     end
 

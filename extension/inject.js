@@ -90,6 +90,7 @@ function parseItemText(popup) {
     const implicits  = addMods('.item-mod--implicit .s',  'implicit')
     const fractured  = addMods('.item-mod--fractured .s', 'fractured')
     const explicits  = addMods('.item-mod--explicit .s',  null)
+    const crafted    = addMods('.item-mod--crafted .s',   'crafted')
     const desecrated = addMods('.item-mod--desecrated .s','desecrated')
 
     if (enchants.length)   { enchants.forEach(m => lines.push(m));   lines.push('--------') }
@@ -97,6 +98,7 @@ function parseItemText(popup) {
     if (implicits.length)  { implicits.forEach(m => lines.push(m));  lines.push('--------') }
     fractured.forEach(m  => lines.push(m))
     explicits.forEach(m  => lines.push(m))
+    crafted.forEach(m    => lines.push(m))
     desecrated.forEach(m => lines.push(m))
 
     return lines.join('\n')
