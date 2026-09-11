@@ -138,12 +138,15 @@ local function addItemComparisons(item, build, calcFunc, calcBase, tooltip)
     local itemsTab = build.itemsTab
     itemsTab:UpdateSockets()
 
+    -- The main skill may use a different weapon set than the one active in the UI
+    local mainEnv = build.calcsTab.mainEnv
+    local weaponSet = mainEnv and mainEnv.weaponSet or (itemsTab.activeItemSet.useSecondWeaponSet and 2 or 1)
     local compareSlots = {}
     for slotName, slot in pairs(itemsTab.slots) do
         if itemsTab:IsItemValidForSlot(item, slotName)
             and not slot.inactive
-            and (not slot.weaponSet or slot.weaponSet == (itemsTab.activeItemSet.useSecondWeaponSet and 2 or 1))
-            and slot.shown()
+            and (not slot.weaponSet or slot.weaponSet == weaponSet)
+            and (slot.weaponSet or slot.shown())
         then
             table.insert(compareSlots, slot)
         end
@@ -239,7 +242,7 @@ local function evaluateItem(rawText, build)
     end
 
     -- Parse the item text (same path as pasting an item into PoB)
-    local ok, item = pcall(new, "Item", rawText)
+    local ok, item = pcall(function() return new("Item"):Item(rawText) end)
     t = lap(t, "new Item()")
     if not ok or not item then
         return nil, "item parse error: " .. tostring(item)
