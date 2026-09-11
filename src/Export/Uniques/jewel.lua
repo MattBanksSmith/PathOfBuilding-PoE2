@@ -15,6 +15,9 @@ Limited to: 1
 Controlled Metamorphosis
 Diamond
 Source: Drops from unique{Xesht, We That Are One} in normal{Twisted Domain}
+Version: Pre 0.4.0
+Version: Current
+Selected Variant: 4
 Variant: Very Small Ring
 Variant: Small Ring
 Variant: Medium-Small Ring
@@ -33,9 +36,9 @@ Radius: Variable
 {variant:6}Only affects Passives in Large Ring
 {variant:7}Only affects Passives in Very Large Ring
 {variant:8}Only affects Passives in Massive Ring
-JewelUniqueAllocateDisconnectedPassives
+AllocateDisconnectedPassivesDonutUnique__1
 UniqueAllResistances12
-UniqueChaosResist18
+{version:1}UniqueChaosResist18
 ]],[[
 Grand Spectrum
 Ruby

@@ -1,5 +1,5 @@
 describe("TradeQueryGenerator", function()
-	local mock_queryGen = new("TradeQueryGenerator", { itemsTab = {} })
+	local mock_queryGen = new("TradeQueryGenerator"):TradeQueryGenerator({ itemsTab = {} })
 
 	describe("ProcessMod", function()
 		-- Pass: Mod line maps correctly to trade stat entry without error
@@ -35,10 +35,10 @@ describe("TradeQueryGenerator", function()
 			assert.are.equal(result, 100)
 		end)
 
-		it("uses minion output for non-FullDPS stats when minion output is available", function()
-			local baseOutput = { AverageDamage = 10, Minion = { AverageDamage = 100 } }
-			local newOutput = { AverageDamage = 10, Minion = { AverageDamage = 250 } }
-			local statWeights = { { stat = "AverageDamage", weightMult = 1 } }
+		it("uses minion output for non-FullDPS stats when minion output is desired", function()
+			local baseOutput = { Life = 10, Minion = { Life = 100 } }
+			local newOutput = { Life = 10, Minion = { Life = 250 } }
+			local statWeights = { { stat = "MinionLife", weightMult = 1 } }
 			data.misc.maxStatIncrease = 1000
 
 			local result = mock_queryGen.WeightedRatioOutputs(baseOutput, newOutput, statWeights)
@@ -46,7 +46,20 @@ describe("TradeQueryGenerator", function()
 			assert.are.equal(result, 2.5)
 		end)
 
-		it("uses player output for FullDPS even when minion output is available", function()
+		it("uses lower is better stats correctly", function()
+			local baseOutput = { MaxHit = 100 }
+			local newOutput = { MaxHit = 10 }
+			local statWeights = { { stat = "MaxHit", weightMult = 1, transform = function(number) return -number end } }
+			data.misc.maxStatIncrease = 1000
+
+			local result = mock_queryGen.WeightedRatioOutputs(baseOutput, newOutput, statWeights)
+
+			local close_enough = math.abs(result - -0.1) < 0.0001
+			assert.True(close_enough)
+		end)
+
+		it("uses player and minion output for FullDPS", function()
+			-- minion output gets assigned to the player's full dps in reality
 			local baseOutput = { FullDPS = 100, Minion = { FullDPS = 100 } }
 			local newOutput = { FullDPS = 250, Minion = { FullDPS = 1000 } }
 			local statWeights = { { stat = "FullDPS", weightMult = 1 } }
@@ -54,6 +67,16 @@ describe("TradeQueryGenerator", function()
 
 			local result = mock_queryGen.WeightedRatioOutputs(baseOutput, newOutput, statWeights)
 
+			assert.are.equal(result, 2.5)
+		end)
+
+		it("uses player output for non-FullDPS even when minion output is available", function()
+			local baseOutput = { Life = 100, Minion = { Life = 100 } }
+			local newOutput = { Life = 250, Minion = { Life = 1000 } }
+			local statWeights = { { stat = "Life", weightMult = 1 } }
+			data.misc.maxStatIncrease = 1000
+
+			local result = mock_queryGen.WeightedRatioOutputs(baseOutput, newOutput, statWeights)
 			assert.are.equal(result, 2.5)
 		end)
 
@@ -78,26 +101,60 @@ describe("TradeQueryGenerator", function()
 
 			assert.are.equal(result, 1.2)
 		end)
+
+		it("supports light radius as a player stat weight", function()
+			local lightRadiusStat
+			local minionLightRadiusStat
+			for _, stat in ipairs(data.powerStatList) do
+				if stat.stat == "LightRadiusMod" then
+					lightRadiusStat = stat
+				elseif stat.stat == "MinionLightRadiusMod" then
+					minionLightRadiusStat = stat
+				end
+			end
+
+			assert.is_not_nil(lightRadiusStat)
+			assert.is_nil(minionLightRadiusStat)
+			local result = mock_queryGen.WeightedRatioOutputs(
+				{ LightRadiusMod = 1 },
+				{ LightRadiusMod = 1.25 },
+				{ { stat = lightRadiusStat.stat, weightMult = 1 } })
+			assert.are.equal(result, 1.25)
+		end)
 	end)
 
 	describe("Filter prioritization", function()
-		-- Pass: Limits mods to MAX_FILTERS (2 in test), preserving top priorities
-		-- Fail: Exceeds limit, indicating over-generation of filters, risking API query size errors or rate limits
-		it("respects MAX_FILTERS", function()
-			local orig_max = _G.MAX_FILTERS
-			_G.MAX_FILTERS = 2
-			mock_queryGen.modWeights = { { weight = 10, tradeModId = "id1" }, { weight = 5, tradeModId = "id2" } }
-			table.sort(mock_queryGen.modWeights, function(a, b)
-				return math.abs(a.weight) > math.abs(b.weight)
-			end)
-			local prioritized = {}
-			for i, entry in ipairs(mock_queryGen.modWeights) do
-				if #prioritized < _G.MAX_FILTERS then
-					table.insert(prioritized, entry)
-				end
+		it("counts socket constraints against MAX_FILTERS", function()
+			local queryGen = new("TradeQueryGenerator"):TradeQueryGenerator({ itemsTab = { items = {} } })
+			queryGen.modWeights = {}
+			for index = 1, 40 do
+				table.insert(queryGen.modWeights, {
+					tradeModId = "explicit.stat_" .. index,
+					weight = 1,
+					meanStatDiff = 41 - index,
+				})
 			end
-			assert.are.equal(#prioritized, 2)
-			_G.MAX_FILTERS = orig_max
+			queryGen.calcContext = {
+				testItem = new("Item"):Item("Rarity: RARE\nNew Item\nGold Ring\nImplicits: 0"),
+				baseOutput = {},
+				baseStatValue = 0,
+				itemCategoryQueryStr = "accessory.ring",
+				special = {},
+				options = {
+					statWeights = {},
+					includeMirrored = false,
+					sockets = 3,
+				},
+			}
+			queryGen.tradeTypeIndex = 1
+			local query
+			queryGen.requesterCallback = function(_, queryJson)
+				query = require("dkjson").decode(queryJson).query
+			end
+			queryGen:FinishQuery()
+
+			assert.are.equal(32, #query.stats[1].filters)
+			assert.is_not_nil(query.filters.equipment_filters.filters.rune_sockets)
 		end)
 	end)
 end)

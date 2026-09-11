@@ -8,8 +8,7 @@ Moulded Mitts
 Variant: Pre 0.1.1
 Variant: Pre 0.5.0
 Variant: Current
-Implicits: 1
-{variant:3}Grants Skill: Level (1-20) Herald of the Royal Queen
+{variant:3}UniqueAtziriHeraldSkill1
 {variant:1,2}UniqueLocalIncreasedPhysicalDamageReductionRatingPercent11[80,100]
 {variant:3}UniqueLocalIncreasedPhysicalDamageReductionRatingPercent11
 {variant:3}UniqueIncreasedLife58
@@ -24,7 +23,7 @@ Implicits: 1
 Dreadfist
 Bolstered Mitts
 League: Dawn of the Hunt
-UniqueLocalIncreasedPhysicalDamageReductionRatingPercent10
+UniqueLocalIncreasedPhysicalDamageReductionRatingPercent6
 UniqueCriticalMultiplier2
 UniqueImpaleOnCriticalHit1
 UniqueCriticalsCannotConsumeImpale1
@@ -57,7 +56,7 @@ Variant: Pre 0.1.1
 Variant: Current
 UniqueIncreasedSkillSpeed1
 {variant:2}UniqueLocalIncreasedPhysicalDamageReductionRating3
-UniqueIncreasedLife3
+UniqueIncreasedLife9
 UniqueMaximumManaIncrease3
 UniqueShareChargesWithAllies1
 ]],[[
@@ -65,7 +64,7 @@ Empire's Grasp
 Titan Mitts
 League: Dawn of the Hunt
 UniqueLocalIncreasedPhysicalDamageReductionRatingPercent30
-UniqueStrength23
+UniqueStrength41
 UniqueLifeGainedFromEnemyDeath11
 UniqueIncreasedPhysicalDamagePercent1
 UniqueEnemyKnockbackDirectionReversed1
@@ -98,8 +97,7 @@ UniqueChillEffect1
 Horror's Flight
 Engraved Bracers
 League: Runes of Aldur
-Implicits: 1
-Grants Skill: Level (1-20) Crushing Fear
+UniqueCrushingFearSkill1
 UniqueLocalIncreasedEvasionRatingPercent36
 UniqueIncreasedAttackSpeed16
 UniqueDexterity45
@@ -108,9 +106,9 @@ UniqueGainFearIncarnateOnCulling1
 ]],[[
 Idle Hands
 Sectioned Bracers
-UniqueLocalIncreasedEvasionRatingPercent3
+UniqueLocalIncreasedEvasionRatingPercent7
 UniqueIncreasedAccuracy4
-UniqueIntelligence3
+UniqueIntelligence19
 UniqueIncreasedAttackSpeedFullMana1
 UniqueFullManaThreshold1
 ]],[[
@@ -119,9 +117,9 @@ Fine Bracers
 Variant: Pre 0.4.0
 Variant: Current
 UniqueLocalIncreasedEvasionRatingPercent12
-UniqueCriticalStrikeChance1
+UniqueCriticalStrikeChance5
 UniqueIncreasedAttackSpeed3
-UniqueDexterity2
+UniqueDexterity19
 {variant:2}UniqueCriticalStrikesCannotBeRerolled1
 UniqueCriticalStrikeMultiplierOverride1
 ]],[[
@@ -142,7 +140,7 @@ Snakebite
 Spined Bracers
 Variant: Pre 0.1.1
 Variant: Current
-UniqueLocalIncreasedEvasionRatingPercent3
+UniqueLocalIncreasedEvasionRatingPercent8
 UniqueChaosResist6
 {variant:2}UniqueLifeRegeneration12
 {variant:1}UniqueBaseChanceToPoison1[20,20]
@@ -166,7 +164,7 @@ UniqueDoubleIgniteChance1
 ]],[[
 Demon Stitcher
 Intricate Gloves
-UniqueIncreasedEnergyShield2
+UniqueLocalIncreasedEnergyShield4
 UniqueIncreasedLife15
 UniqueIncreasedCastSpeed7
 UniqueSacrificeLifeToGainEnergyShield1
@@ -175,32 +173,32 @@ Doedre's Tenure
 Stitched Gloves
 Variant: Pre 0.1.1
 Variant: Current
-{variant:2}UniqueLocalIncreasedEnergyShield12
+{variant:2}UniqueLocalIncreasedEnergyShield10
 UniqueSpellDamage1
 UniqueIncreasedCastSpeed6
-AmuletImplicitIntelligence1
+UniqueIntelligence18
 ]],[[
 Essentia Sanguis
 Furtive Wraps
 League: Dawn of the Hunt
 UniqueLocalIncreasedEvasionAndEnergyShield17
 UniqueAddedLightningDamage3
-UniqueIntelligence31
+UniqueIntelligence34
 UniqueLightningResist26
 UniqueLeechEnergyShieldInsteadofLife1
 ]],[[
 Kitoko's Current
 Jewelled Gloves
 UniqueLocalIncreasedEnergyShieldPercent7
-UniqueDexterity2
+UniqueDexterity10
 UniqueAttackAndCastSpeed1
 UniqueLightningDamageCanElectrocute1
 ]],[[
 Leopold's Applause
 Embroidered Gloves
 League: Dawn of the Hunt
-UniqueLocalIncreasedEnergyShieldPercent1
-UniqueIncreasedMana12
+UniqueLocalIncreasedEnergyShieldPercent25
+UniqueIncreasedMana48
 UniqueItemFoundRarityIncrease21
 UniqueElementalPenetration1
 UniqueElementalPenetrationBelowZero1
@@ -208,10 +206,10 @@ UniqueElementalPenetrationBelowZero1
 Nightscale
 Pauascale Gloves
 League: Dawn of the Hunt
-UniqueLocalIncreasedEnergyShieldPercent25
+UniqueLocalIncreasedEnergyShieldPercent20
 UniqueCriticalStrikeChance14
-UniqueIntelligence29
-UniqueColdResist34
+UniqueIntelligence10
+UniqueColdResist30
 UniqueManaRegenerationRateIfCritRecently1
 UniqueNoManaRegenIfNotCritRecently1
 ]],[[
@@ -235,7 +233,7 @@ Aerisvane's Wings
 Burnished Gauntlets
 UniqueLocalIncreasedArmourAndEvasion15
 UniqueIncreasedAttackSpeed4
-UniqueIntelligence9
+UniqueIntelligence22
 UniqueDecimatingStrike1
 ]],[[
 Aurseize
@@ -247,10 +245,10 @@ UniqueMaximumLifeOnKillPercent1
 Death Articulated
 Ornate Gauntlets
 League: Dawn of the Hunt
-UniqueLocalIncreasedArmourAndEvasion26
-UniqueIncreasedAttackSpeed8
-UniqueChaosResist25
-UniqueLifeDegenerationPercentGracePeriod1
+UniqueLocalIncreasedArmourAndEvasion30
+UniqueIncreasedAttackSpeed9
+UniqueChaosResist35
+UniqueLifeDegenerationPercentGracePeriod3
 UniqueRageRegeneration1
 UniqueNonherentRageLoss1
 ]],[[
@@ -270,17 +268,17 @@ Variant: Pre 0.1.1
 Variant: Current
 {variant:2}UniqueLocalIncreasedArmourAndEvasion25
 UniqueAddedPhysicalDamage3
-UniqueIncreasedLife6
+UniqueIncreasedLife10
 UniqueIncreasedAttackSpeed2
 UniqueStrengthSatisfiesAllWeaponRequirements1
 ]],[[
 Valako's Vice
 Plate Gauntlets
 League: Dawn of the Hunt
-UniqueLocalIncreasedArmourAndEvasion6
-UniqueIncreasedAttackSpeed9
-UniqueStrength41
-UniqueDexterity37
+UniqueLocalIncreasedArmourAndEvasion19
+UniqueIncreasedAttackSpeed11
+UniqueStrength23
+UniqueDexterity24
 UniqueLightningResist23
 UniqueFireDamageConvertToLightning1
 ]],
@@ -291,7 +289,7 @@ Goldcast Cuffs
 Variant: Pre 0.1.1
 Variant: Current
 {variant:2}UniqueLocalIncreasedEnergyShield11
-UniqueIntelligence6
+UniqueIntelligence12
 UniqueFireResist7
 UniqueColdResist9
 UniqueFireDamageConvertToCold1
@@ -319,7 +317,7 @@ UniqueCannotImmobilise1
 ]],[[
 Shackles of the Wretched
 Aged Cuffs
-UniqueLocalIncreasedArmourAndEnergyShield2
+UniqueLocalIncreasedArmourAndEnergyShield3
 UniqueChillImmunityWhenChilled1
 UniqueFreezeImmunityWhenFrozen1
 UniqueIgniteImmunityWhenIgnited1
@@ -330,7 +328,7 @@ UniqueReflectCurseToSelf1
 [[
 Blessed Bonds
 Linen Wraps
-Source: Drops from unique{Zarokh, the Temporal}
+Source: No longer obtainable
 UniqueLocalBaseEvasionRatingAndEnergyShield1
 UniqueManaGainedFromEnemyDeath8
 UniqueColdExposureOnIgnite1
@@ -354,7 +352,7 @@ Linen Wraps
 Variant: Pre 0.1.1
 Variant: Current
 UniqueLocalIncreasedEvasionAndEnergyShield2
-UniqueIncreasedLife10
+UniqueIncreasedLife6
 {variant:2}UniqueCriticalMultiplier3
 UniqueLifeFlaskNoRecovery1
 UniqueDoubleOnKillEffects1
@@ -364,7 +362,7 @@ Gauze Wraps
 Variant: Pre 0.1.1
 Variant: Pre 0.5.0
 Variant: Current
-UniqueLocalIncreasedEvasionAndEnergyShield1
+UniqueLocalIncreasedEvasionAndEnergyShield4
 UniqueIncreasedAttackSpeed1
 {variant:3}UniqueCannotInflictElementalAilments1
 {variant:1}UniqueBaseChanceToPoison2[5,10]
@@ -374,8 +372,7 @@ UniqueAllDamageCanPoison1
 Thunderfist
 Utility Wraps
 League: Rise of the Abyssal
-Implicits: 1
-Grants Skill: Level (1-20) Crackling Palm
+ThunderfistUnique__1
 UniqueLocalIncreasedEvasionAndEnergyShield19
 UniqueIncreasedAttackSpeed13
 UniqueLightningResist29
@@ -390,7 +387,7 @@ Source: Drops from unique{Arbiter of Ash} in normal{The Burning Monolith}
 Variant: Pre 0.4.0
 Variant: Pre 0.5.0
 Variant: Current
-UniqueIncreasedSkillSpeed1
+UniqueIncreasedSkillSpeed5
 {variant:1}UniqueLocalArmourAndEvasionAndEnergyShield3[40,60]
 {variant:2}UniqueLocalArmourAndEvasionAndEnergyShield3[100,150]
 {variant:3}UniqueLocalArmourAndEvasionAndEnergyShield3

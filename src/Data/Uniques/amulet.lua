@@ -56,6 +56,7 @@ Jade Amulet
 Source: Drops from unique{Xesht, We That Are One} in normal{Twisted Domain}
 Variant: Pre 0.4.0
 Variant: Current
+Requires Level 55
 Implicits: 2
 Grants Skill: Level (1-20) Lightning Bolt
 {tags:attribute}+(10-15) to Dexterity
@@ -89,13 +90,14 @@ Implicits: 1
 {tags:mana}(20-30)% increased Mana Regeneration Rate
 {variant:1}{tags:mana}+50 to maximum Mana
 {variant:2}{tags:mana}+(40-60) to maximum Mana
-{tags:mana}50% increased Mana Regeneration Rate
+{tags:mana}(40-60)% increased Mana Regeneration Rate
 {variant:1}{tags:defences}Gain (20-30)% of maximum Mana as Extra maximum Energy Shield
 {variant:2}{tags:defences}Gain (4-6)% of maximum Mana as Extra maximum Energy Shield
 ]],[[
 Eventide Petals
 Veridical Chain
 League: Runes of Aldur
+Requires Level 55
 Implicits: 2
 Grants Skill: Level (1-20) Midnight Zenith
 +(30-40) to maximum Runic Ward
@@ -141,8 +143,8 @@ Allies in your Presence have (30-50)% increased Critical Damage Bonus
 ]],[[
 Hinekora's Sight
 Stellar Amulet
-Requires Level 44
 League: Rise of the Abyssal
+Requires Level 44
 Implicits: 2
 Grants Skill: Level (1-20) Future-Past
 {tags:attribute}+(5-7) to all Attributes
@@ -152,11 +154,15 @@ Cannot be Blinded
 ]],[[
 Idol of Uldurn
 Crimson Amulet
+Version: Pre 0.5.0
+Version: Current
 Requires Level 24
 Implicits: 1
 {tags:life}(2-4) Life Regeneration per second
 {tags:life}+(60-80) to maximum Life
 {tags:attribute}+(10-20) to Dexterity
+{version:2}(20-40)% reduced Presence Area of Effect
+{version:2}(10-15)% increased Spirit
 Skills have +1 to Limit
 ]],[[
 Igniferis
@@ -165,7 +171,7 @@ Implicits: 1
 {tags:life}(2-4) Life Regeneration per second
 {tags:fire}+(10-20)% to Fire Resistance
 {tags:mana}(20-30)% increased Mana Regeneration Rate
-25% reduced Light Radius
+25% increased Light Radius
 Life Recovery from Regeneration is not applied
 Every 4 seconds, Recover 1 Life for every 0.2 Life Recovery per second from Regeneration
 ]],[[
@@ -174,7 +180,7 @@ Solar Amulet
 League: Runes of Aldur
 Implicits: 1
 +(10-15) to Spirit
-{tags:life,mana}100% of Damage is taken from Mana before Life
+{unscalable}{tags:life,mana}100% of Damage is taken from Mana before Life
 {tags:defences}Cannot have Energy Shield
 {tags:defences}Convert 100% of maximum Energy Shield to maximum Divinity
 (0-100)% increased maximum Divinity
@@ -252,6 +258,7 @@ Strugglescream
 Stellar Amulet
 Variant: Pre 0.4.0
 Variant: Current
+Requires Level 52
 Implicits: 1
 {tags:attribute}+(5-7) to all Attributes
 {variant:1}Can have 2 additional Instilled Modifiers
@@ -277,11 +284,12 @@ Variant: Pre 0.3.0
 Variant: Pre 0.4.0
 Variant: Current
 Source: Drops from unique{Xesht, We That Are One} in normal{Twisted Domain}
+Requires Level 52
 Implicits: 1
 {tags:attribute}+(10-15) to Strength
 {tags:life}(10-20)% increased maximum Life
 {variant:1,2}{tags:fire}+(30-40)% to Fire Resistance
-{variant:3}{tags:fire}+(20-30)% to Fire Resistance
+{variant:3}{tags:fire}+(50-100)% to Fire Resistance
 {variant:1}Enemies in your Presence have +1% to Fire Resistance
 {variant:2}Enemies in your Presence have -10% to Fire Resistance
 {variant:3}Enemies in your Presence have -25% to Fire Resistance

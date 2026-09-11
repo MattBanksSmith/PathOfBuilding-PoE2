@@ -4,7 +4,8 @@
 -- Strength support gems
 -- Skill data (c) Grinding Gear Games
 --
-local skills, mod, flag, skill = ...
+			return function(skills, mod, flag, skill)
+---@cast mod SkillModFunction
 skills["SupportAftershockChancePlayer"] = {
 	name = "Aftershock I",
 	description = "Supports Slams you use yourself, giving them a chance to create an Aftershock.",
@@ -393,6 +394,8 @@ skills["ArmourExplosionPlayer"] = {
 	castTime = 1,
 	qualityStats = {
 	},
+	altQualityStats = {
+	},
 	levels = {
 		[1] = { levelRequirement = 0, cost = { Mana = 0, }, },
 	},
@@ -761,6 +764,8 @@ skills["TriggeredBattershoutExplosionPlayer"] = {
 	castTime = 1,
 	qualityStats = {
 	},
+	altQualityStats = {
+	},
 	levels = {
 		[1] = { levelRequirement = 0, cost = { Mana = 0, }, },
 	},
@@ -988,6 +993,7 @@ skills["SupportBloodlustPlayer"] = {
 	levels = {
 		[1] = { levelRequirement = 0, },
 	},
+	legacy = true,
 	statSets = {
 		[1] = {
 			label = "Bloodlust",
@@ -1014,7 +1020,7 @@ skills["SupportBloodlustPlayer"] = {
 }
 skills["SupportBrambleslamPlayer"] = {
 	name = "Brambleslam",
-	description = "Supports Slam Skills. Supported Skills create Hazardous Brambles on the ground that activate after a duration. Enemies which come in contact with these thorns take damage and are Maimed. A maximum of 20 Brambles are allowed at one time. Does not modify Skills used by Minions or Totems.",
+	description = "Supports Slam Skills, making them Trigger Brambles to create Hazardous brambles which damage and Maim enemies. Does not modify Skills used by Minions or Totems.",
 	color = 1,
 	support = true,
 	requireSkillTypes = { SkillType.Slam, },
@@ -1047,10 +1053,12 @@ skills["TriggeredBrambleslamPlayer"] = {
 	name = "Brambles",
 	hidden = true,
 	icon = "Art/2DArt/SkillIcons/iconbasicattack.dds",
-	description = "Hazardous thorns damage and Maim enemies with which they come in contact.",
+	description = "Creates Hazardous Brambles on the ground that activate after a duration. Enemies which come in contact with these thorns take damage and are Maimed. A maximum of 20 Brambles are allowed at one time.",
 	skillTypes = { [SkillType.Triggerable] = true, [SkillType.Triggered] = true, [SkillType.InbuiltTrigger] = true, [SkillType.Damage] = true, [SkillType.Area] = true, [SkillType.Physical] = true, [SkillType.Attack] = true, [SkillType.NoAttackOrCastTime] = true, [SkillType.SkillGrantedBySupport] = true, [SkillType.Hazard] = true, [SkillType.AttackInPlace] = true, [SkillType.Cooldown] = true, [SkillType.Plant] = true, },
 	castTime = 1,
 	qualityStats = {
+	},
+	altQualityStats = {
 	},
 	levels = {
 		[1] = { cooldown = 0.15, levelRequirement = 0, storedUses = 6, cost = { Mana = 0, }, },
@@ -1744,6 +1752,8 @@ skills["TriggeredCorruptingCryPlayer"] = {
 	castTime = 1,
 	qualityStats = {
 	},
+	altQualityStats = {
+	},
 	levels = {
 		[1] = { levelRequirement = 0, cost = { Mana = 0, }, },
 		[2] = { levelRequirement = 0, cost = { Mana = 0, }, },
@@ -1903,6 +1913,8 @@ skills["TriggeredCorruptingCryTwoPlayer"] = {
 	castTime = 1,
 	qualityStats = {
 	},
+	altQualityStats = {
+	},
 	levels = {
 		[1] = { levelRequirement = 0, cost = { Mana = 0, }, },
 		[2] = { levelRequirement = 0, cost = { Mana = 0, }, },
@@ -2059,6 +2071,8 @@ skills["TriggeredCraterPlayer"] = {
 	castTime = 1,
 	qualityStats = {
 	},
+	altQualityStats = {
+	},
 	levels = {
 		[1] = { levelRequirement = 0, cost = { Mana = 0, }, },
 	},
@@ -2203,10 +2217,12 @@ skills["TriggeredDeadlyResolvePlayer"] = {
 	name = "Deadly Resolve",
 	hidden = true,
 	icon = "Art/2DItems/Gems/New/NewSupport/DangerousResolveSupportGem.dds",
-	description = "Creates a deadly slash towards the target, dealing Attack damage which is not based on your Weapon",
+	description = "Creates a deadly slash towards the target, dealing Attack damage which is not based on your Weapon.",
 	skillTypes = { [SkillType.Triggered] = true, [SkillType.Area] = true, [SkillType.SkillGrantedBySupport] = true, [SkillType.InbuiltTrigger] = true, [SkillType.Triggerable] = true, [SkillType.Damage] = true, [SkillType.Physical] = true, [SkillType.Attack] = true, [SkillType.AttackInPlace] = true, [SkillType.UseGlobalStats] = true, [SkillType.NonWeaponAttack] = true, },
 	castTime = 1,
 	qualityStats = {
+	},
+	altQualityStats = {
 	},
 	levels = {
 		[1] = { baseMultiplier = 0.9, critChance = 5, levelRequirement = 0, cost = { Mana = 0, }, },
@@ -3333,6 +3349,8 @@ skills["TriggeredFanTheFlamesPlayer"] = {
 	castTime = 1,
 	qualityStats = {
 	},
+	altQualityStats = {
+	},
 	levels = {
 		[1] = { baseMultiplier = 0.45, cooldown = 0.5, critChance = 7, levelRequirement = 0, storedUses = 5, cost = { Mana = 0, }, },
 		[2] = { baseMultiplier = 0.49, cooldown = 0.5, critChance = 7, levelRequirement = 0, storedUses = 5, cost = { Mana = 0, }, },
@@ -3479,6 +3497,8 @@ skills["TriggeredFanTheFlamesPlayerTwo"] = {
 	skillTypes = { [SkillType.Triggerable] = true, [SkillType.Triggered] = true, [SkillType.InbuiltTrigger] = true, [SkillType.Damage] = true, [SkillType.Area] = true, [SkillType.Fire] = true, [SkillType.SkillGrantedBySupport] = true, [SkillType.AttackInPlace] = true, [SkillType.Attack] = true, [SkillType.UseGlobalStats] = true, [SkillType.Cooldown] = true, [SkillType.NonWeaponAttack] = true, },
 	castTime = 1,
 	qualityStats = {
+	},
+	altQualityStats = {
 	},
 	levels = {
 		[1] = { baseMultiplier = 0.45, cooldown = 0.5, critChance = 7, levelRequirement = 0, storedUses = 5, cost = { Mana = 0, }, },
@@ -3857,6 +3877,8 @@ skills["TriggeredFlamePillarPlayer"] = {
 	castTime = 1,
 	qualityStats = {
 	},
+	altQualityStats = {
+	},
 	levels = {
 		[1] = { levelRequirement = 0, cost = { Mana = 0, }, },
 	},
@@ -4064,6 +4086,8 @@ skills["TriggeredHaemocrystalsPlayer"] = {
 	skillTypes = { [SkillType.Triggerable] = true, [SkillType.Triggered] = true, [SkillType.InbuiltTrigger] = true, [SkillType.Damage] = true, [SkillType.Area] = true, [SkillType.Physical] = true, [SkillType.SkillGrantedBySupport] = true, [SkillType.AttackInPlace] = true, },
 	castTime = 1,
 	qualityStats = {
+	},
+	altQualityStats = {
 	},
 	levels = {
 		[1] = { levelRequirement = 0, cost = { Mana = 0, }, },
@@ -4882,6 +4906,7 @@ skills["SupportLastingGroundPlayer"] = {
 	levels = {
 		[1] = { levelRequirement = 0, },
 	},
+	legacy = true,
 	statSets = {
 		[1] = {
 			label = "Support",
@@ -5362,10 +5387,12 @@ skills["TriggeredCorruptingCryThreePlayer"] = {
 	name = "Twisted Pact",
 	hidden = true,
 	icon = "",
-	description = "Covers the target in large quantities of Corrupted Blood which severly damages them.",
+	description = "Covers the target in large quantities of Corrupted Blood which severely damages them.",
 	skillTypes = { [SkillType.Duration] = true, [SkillType.Triggerable] = true, [SkillType.Triggered] = true, [SkillType.InbuiltTrigger] = true, [SkillType.AttackInPlace] = true, [SkillType.SkillGrantedBySupport] = true, [SkillType.Physical] = true, [SkillType.DamageOverTime] = true, },
 	castTime = 1,
 	qualityStats = {
+	},
+	altQualityStats = {
 	},
 	levels = {
 		[1] = { levelRequirement = 0, cost = { Mana = 0, }, },
@@ -5690,6 +5717,8 @@ skills["TriggeredQuillburstPlayer"] = {
 	skillTypes = { [SkillType.Triggerable] = true, [SkillType.Triggered] = true, [SkillType.InbuiltTrigger] = true, [SkillType.Damage] = true, [SkillType.Area] = true, [SkillType.Physical] = true, [SkillType.SkillGrantedBySupport] = true, [SkillType.AttackInPlace] = true, [SkillType.Cooldown] = true, },
 	castTime = 1,
 	qualityStats = {
+	},
+	altQualityStats = {
 	},
 	levels = {
 		[1] = { cooldown = 0.15, levelRequirement = 0, storedUses = 1, cost = { Mana = 0, }, },
@@ -6711,6 +6740,8 @@ skills["TriggeredSkitteringStonePlayer"] = {
 	castTime = 1,
 	qualityStats = {
 	},
+	altQualityStats = {
+	},
 	levels = {
 		[1] = { levelRequirement = 0, cost = { Mana = 0, }, },
 	},
@@ -6784,6 +6815,8 @@ skills["TriggeredSkitteringStonePlayerTwo"] = {
 	minionSkillTypes = { [SkillType.Attack] = true, [SkillType.Area] = true, [SkillType.Physical] = true, [SkillType.MeleeSingleTarget] = true, },
 	castTime = 1,
 	qualityStats = {
+	},
+	altQualityStats = {
 	},
 	levels = {
 		[1] = { levelRequirement = 0, cost = { Mana = 0, }, },
@@ -7083,6 +7116,8 @@ skills["StompingGroundShockwavePlayer"] = {
 	castTime = 1,
 	qualityStats = {
 	},
+	altQualityStats = {
+	},
 	levels = {
 		[1] = { levelRequirement = 0, },
 	},
@@ -7307,6 +7342,8 @@ skills["TriggeredSplinterExplosionHardyTotems"] = {
 	skillTypes = { [SkillType.Triggerable] = true, [SkillType.Triggered] = true, [SkillType.InbuiltTrigger] = true, [SkillType.Damage] = true, [SkillType.Area] = true, [SkillType.SkillGrantedBySupport] = true, [SkillType.Physical] = true, [SkillType.AttackInPlace] = true, },
 	castTime = 1,
 	qualityStats = {
+	},
+	altQualityStats = {
 	},
 	levels = {
 		[1] = { critChance = 5, levelRequirement = 0, cost = { Mana = 0, }, },
@@ -7624,6 +7661,7 @@ skills["SupportUnderminePlayer"] = {
 	levels = {
 		[1] = { levelRequirement = 0, },
 	},
+	legacy = true,
 	statSets = {
 		[1] = {
 			label = "Undermine",
@@ -8057,6 +8095,8 @@ skills["TriggeredVolcanicEruptionPlayer"] = {
 	castTime = 1,
 	qualityStats = {
 	},
+	altQualityStats = {
+	},
 	levels = {
 		[1] = { cooldown = 0.4, levelRequirement = 0, storedUses = 1, cost = { Mana = 0, }, },
 	},
@@ -8200,4 +8240,4 @@ skills["SupportZerphisLegacyPlayer"] = {
 			},
 		},
 	}
-}
+}			end

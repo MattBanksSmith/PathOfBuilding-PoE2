@@ -3,8 +3,8 @@
 -- Other active skills
 -- Skill data (c) Grinding Gear Games
 --
-local skills, mod, flag, skill = ...
-
+return function(skills, mod, flag, skill)
+---@cast mod SkillModFunction
 #from tree
 #skill TriggeredAbyssalApparitionPlayer
 #set TriggeredAbyssalApparitionPlayer
@@ -256,7 +256,7 @@ statMap = {
 #flags attack duration
 #mods
 #set ConductiveRunesExplosionPlayer
-#flags attack
+#flags nonWeaponAttack
 #mods
 #skillEnd
 
@@ -304,6 +304,7 @@ statMap = {
 		mod("LifeDegen", "BASE", nil, 0, 0, { type = "Condition", var = "DemonForm" }, { type = "GlobalEffect", effectType = "Buff", effectName = "Demon Form" }, { type = "Multiplier", var = "DemonFlameStacks", limitVar = "DemonFlameMaximum" } ),
 		div = 60,
 	},
+#baseMod flag("Condition:Shapeshifted", { type = "GlobalEffect", effectType = "Buff" }, { type = "Condition", var = "DemonForm" })
 },
 #mods
 #skillEnd
@@ -645,7 +646,15 @@ statMap = {
 
 #skill LeylinesPlayer
 #set LeylinesPlayer
-#flags
+statMap = {
+	["skill_leylines_ward_degeneration_per_minute"] = {
+		mod("WardDegen", "BASE", nil, 0, 0, { type = "GlobalEffect", effectType = "Buff" }, { type = "Condition", var = "OnLeyline" }),
+		div = 60,
+	},
+	["skill_leylines_spell_damage_+%_final"] = {
+		mod("Damage", "MORE", nil, ModFlag.Spell, 0, { type = "GlobalEffect", effectType = "Buff" }, { type = "Condition", var = "OnLeyline" }),
+	},
+},
 #mods
 #skillEnd
 
@@ -827,6 +836,20 @@ statMap = {
 
 #skill SupportOlrothsHubrisPlayer
 #set SupportOlrothsHubrisPlayer
+#flags
+statMap = {
+	["base_ward_cost_+_%_of_maximum_ward"] = {
+		mod("WardCostBase", "BASE", nil, 0, 0, { type = "PercentStat", stat = "Ward", percent = 1 }),
+	},
+	["added_physical_damage_%_ward_cost"] = {
+		mod("PhysicalMin", "BASE", nil, 0, 0, { type = "PercentStat", stat = "WardCost", percent = 1 }),
+		mod("PhysicalMax", "BASE", nil, 0, 0, { type = "PercentStat", stat = "WardCost", percent = 1 }),
+	},
+	["added_cold_damage_%_ward_cost"] = {
+		mod("ColdMin", "BASE", nil, 0, 0, { type = "PercentStat", stat = "WardCost", percent = 1 }),
+		mod("ColdMax", "BASE", nil, 0, 0, { type = "PercentStat", stat = "WardCost", percent = 1 }),
+	},
+},
 #mods
 #skillEnd
 
@@ -997,6 +1020,16 @@ statMap = {
 
 #skill SupportRunicInfusionPlayer
 #set SupportRunicInfusionPlayer
+#flags
+statMap = {
+	["base_ward_cost_+_%_of_maximum_ward"] = {
+		mod("WardCostBase", "BASE", nil, 0, 0, { type = "PercentStat", stat = "Ward", percent = 1 }),
+	},
+	["added_physical_damage_%_ward_cost"] = {
+		mod("PhysicalMin", "BASE", nil, 0, 0, { type = "PercentStat", stat = "WardCost", percent = 1 }),
+		mod("PhysicalMax", "BASE", nil, 0, 0, { type = "PercentStat", stat = "WardCost", percent = 1 }),
+	},
+},
 #mods
 #skillEnd
 
@@ -1047,6 +1080,12 @@ statMap = {
 
 #skill SupportScouringFlamePlayer
 #set SupportScouringFlamePlayer
+#flags
+statMap = {
+	["support_scouring_flame_ignite_effect_+%_final"] = {
+		mod("AilmentMagnitude", "MORE", nil, 0, KeywordFlag.Ignite),
+	},
+},
 #mods
 #skillEnd
 
@@ -1250,7 +1289,7 @@ statMap = {
 #from tree
 #skill TemperWeaponCombustionPlayer
 #set TemperWeaponCombustionPlayer
-#flags attack area
+#flags attack area melee
 #mods
 #skillEnd
 
@@ -1647,3 +1686,4 @@ skills["ThornsPlayer"] = {
 		},
 	}
 }
+end

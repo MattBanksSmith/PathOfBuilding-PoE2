@@ -2,8 +2,8 @@
 -- Dexterity support gems
 -- Skill data (c) Grinding Gear Games
 --
-local skills, mod, flag, skill = ...
-
+return function(skills, mod, flag, skill)
+---@cast mod SkillModFunction
 #skill SupportAdhesiveGrenadesPlayer
 #set SupportAdhesiveGrenadesPlayer
 statMap = {
@@ -710,6 +710,7 @@ statMap = {
 #skillEnd
 
 #skill SupportEmpoweredCullPlayer
+legacy = true
 #set SupportEmpoweredCullPlayer
 statMap = {
 	["support_empowered_culling_strike"] = {
@@ -1290,3 +1291,4 @@ statMap = {
 },
 #mods
 #skillEnd
+end

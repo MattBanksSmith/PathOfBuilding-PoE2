@@ -3,7 +3,8 @@
 -- Module: Calc Active Skill
 -- Active skill setup.
 --
-local calcs = ...
+---@class Calcs
+local calcs = require("Modules.CalcBase")
 
 local pairs = pairs
 local ipairs = ipairs
@@ -76,19 +77,8 @@ local function isGlobalEffect(modOrGroup)
 	end
 	return false
 end
-
--- Merge skill effect modifiers with given mod list
--- If a stat set is provided, merge it and global effects from the other stat sets
-function calcs.mergeSkillInstanceMods(env, modList, skillEffect, statSet, extraStats)
-	calcLib.validateGemLevel(skillEffect)
-	-- Verify that statSet provided is from skillEffect
-	if statSet and not isValueInArray(skillEffect.grantedEffect.statSets, statSet) then
-		return
-	end
-	local grantedEffect = skillEffect.grantedEffect
-	local selectedGlobalStats = { }
-	local function mergeStatSet(set, onlyGlobals)
-		local stats = calcLib.buildSkillInstanceStats(skillEffect, grantedEffect, set)
+local function mergeStatSet(set, onlyGlobals, skillEffect, grantedEffect, env, extraStats, modList, selectedGlobalStats)
+		local stats = calcLib.buildSkillInstanceStats(skillEffect, grantedEffect, set, env.useAltGemQualityStats)
 		if extraStats and extraStats[1] then
 			for _, stat in pairs(extraStats) do
 				stats[stat.key] = (stats[stat.key] or 0) + stat.value
@@ -121,14 +111,24 @@ function calcs.mergeSkillInstanceMods(env, modList, skillEffect, statSet, extraS
 			end
 		end
 	end
+-- Merge skill effect modifiers with given mod list
+-- If a stat set is provided, merge it and global effects from the other stat sets
+function calcs.mergeSkillInstanceMods(env, modList, skillEffect, statSet, extraStats)
+	calcLib.validateGemLevel(skillEffect)
+	-- Verify that statSet provided is from skillEffect
+	if statSet and not isValueInArray(skillEffect.grantedEffect.statSets, statSet) then
+		return
+	end
+	local selectedGlobalStats = {}
+	local grantedEffect = skillEffect.grantedEffect
 	for _, set in ipairs(statSet and {statSet} or grantedEffect.statSets) do
-		mergeStatSet(set)
+		mergeStatSet(set, nil, skillEffect, grantedEffect, env, extraStats, modList, selectedGlobalStats)
 		modList:AddList(set.baseMods)
 	end
 	if statSet then
 		for _, set in ipairs(grantedEffect.statSets) do
 			if set ~= statSet then
-				mergeStatSet(set, true)
+				mergeStatSet(set, true, skillEffect, grantedEffect, env, extraStats, modList, selectedGlobalStats)
 				for _, baseMod in ipairs(set.baseMods or { }) do
 					if isGlobalEffect(baseMod) then
 						modList:AddMod(baseMod)
@@ -142,6 +142,7 @@ end
 -- Create an active skill using the given active gem and list of support gems
 -- It will determine the base flag set, and check which of the support gems can support this skill
 function calcs.createActiveSkill(activeEffect, supportList, env, actor, socketGroup, summonSkill)
+	---@type ActiveSkill
 	local activeSkill = {
 		activeEffect = activeEffect,
 		supportList = supportList,
@@ -161,7 +162,9 @@ function calcs.createActiveSkill(activeEffect, supportList, env, actor, socketGr
 	end
 
 	-- Initialise skill flag set ('attack', 'projectile', etc)
-	local statSet, skillFlags
+	---@class SkillFlags
+	local skillFlags
+	local statSet
 	if env.mode == "CALCS" then
 		statSet = activeEffect.grantedEffect.statSets[activeEffect.statSetCalcs.index]
 		skillFlags = statSet and copyTable(statSet.baseFlags) or { }
@@ -230,6 +233,35 @@ function calcs.createActiveSkill(activeEffect, supportList, env, actor, socketGr
 	return activeSkill
 end
 
+local function getSourceGemPropertyInfo(env, activeSkill)
+	local activeEffect = activeSkill.activeEffect
+	local sourceGem = activeEffect.srcInstance
+	if not sourceGem or not activeEffect.gemData or activeEffect.gemData.tags.support then
+		return { }
+	end
+
+	env.sourceGemPropertyInfo = env.sourceGemPropertyInfo or { }
+	if not env.sourceGemPropertyInfo[sourceGem] then
+		local modList = new("ModList"):ModList(activeSkill.actor.modDB)
+		local supportCount = 0
+		for _, supportEffect in ipairs(activeSkill.supportList) do
+			if supportEffect.isSupporting and supportEffect.isSupporting[sourceGem] then
+				calcs.mergeSkillInstanceMods(env, modList, supportEffect)
+				if not supportEffect.grantedEffect.hidden then
+					supportCount = supportCount + 1
+				end
+			end
+		end
+		modList:NewMod("Multiplier:SupportCount", "BASE", supportCount, "Support Count")
+		env.sourceGemPropertyInfo[sourceGem] = modList:Tabulate("LIST", {
+			skillName = activeEffect.gemData.name,
+			skillGem = activeEffect.gemData,
+			slotName = activeSkill.slotName,
+		}, "SupportedGemProperty")
+	end
+	return env.sourceGemPropertyInfo[sourceGem]
+end
+
 function calcs.getActiveSkillDisplayName(activeSkill)
 	local skillName = activeSkill.activeEffect.grantedEffect.name
 	local skillMinion = activeSkill.minion
@@ -255,9 +287,9 @@ function calcs.copyActiveSkill(env, mode, skill)
 	local newSkill = calcs.createActiveSkill(activeEffect, skill.supportList, env, env.player, skill.socketGroup, skill.summonSkill)
 	local newEnv, _, _, _ = calcs.initEnv(env.build, mode, env.override)
 	calcs.buildActiveSkillModList(newEnv, newSkill)
-	newSkill.skillModList = new("ModList", newSkill.baseSkillModList)
+	newSkill.skillModList = new("ModList"):ModList(newSkill.baseSkillModList)
 	if newSkill.minion then
-		newSkill.minion.modDB = new("ModDB")
+		newSkill.minion.modDB = new("ModDB"):ModDB()
 		newSkill.minion.modDB.actor = newSkill.minion
 		calcs.createMinionSkills(env, newSkill)
 		newSkill.skillPartName = newSkill.minion.mainSkill.activeEffect.grantedEffect.name
@@ -461,7 +493,7 @@ function calcs.buildActiveSkillModList(env, activeSkill)
 	activeSkill.weapon1Flags = 0
 	activeSkill.weapon2Flags = 0
 	-- Initialise skill modifier list
-	local skillModList = new("ModList", activeSkill.actor.modDB)
+	local skillModList = new("ModList"):ModList(activeSkill.actor.modDB)
 	activeSkill.skillModList = skillModList
 	activeSkill.baseSkillModList = skillModList
 
@@ -525,7 +557,7 @@ function calcs.buildActiveSkillModList(env, activeSkill)
 	end
 
 	-- Apply stat-map flagged skill flags.
-	for stat, statValue in pairs(calcLib.buildSkillInstanceStats(activeEffect, activeGrantedEffect, activeStatSet)) do
+	for stat, statValue in pairs(calcLib.buildSkillInstanceStats(activeEffect, activeGrantedEffect, activeStatSet, env.useAltGemQualityStats)) do
 		local map = activeGrantedEffect.statMap[stat]
 		if statValue ~= 0 and map and map.skillFlag then
 			skillFlags[map.skillFlag] = true
@@ -639,9 +671,10 @@ function calcs.buildActiveSkillModList(env, activeSkill)
 	end
 
 	-- Calculate distance from enemy
-	effectiveRange = env.configInput.enemyDistance
+	effectiveRange = env.configInput.enemyDistance or env.configPlaceholder.enemyDistance
 
 	-- Build config structure for modifier searches
+	---@class ModCfg
 	activeSkill.skillCfg = {
 		flags = bor(skillModFlags, activeSkill.weapon1Flags or activeSkill.weapon2Flags or 0),
 		keywordFlags = skillKeywordFlags,
@@ -667,7 +700,7 @@ function calcs.buildActiveSkillModList(env, activeSkill)
 	end
 
 	-- The damage fixup stat applies x% less base Attack Damage and x% more base Attack Speed as confirmed by Openarl Jan 4th 2024
-	-- Implemented in this manner as the stat exists on the minion not the skills 
+	-- Implemented in this manner as the stat exists on the minion not the skills
 	if activeSkill.actor and activeSkill.actor.minionData then
 		if activeSkill.actor.minionData.damageFixup then
 			skillModList:NewMod("Damage", "MORE", -100 * activeSkill.actor.minionData.damageFixup, "Damage Fixup", ModFlag.Attack)
@@ -740,12 +773,15 @@ function calcs.buildActiveSkillModList(env, activeSkill)
 	skillModList:NewMod("GemLevel", "BASE", activeSkill.activeEffect.srcInstance and activeSkill.activeEffect.srcInstance.level or activeSkill.activeEffect.level, "Max Level")
 	if activeSkill.activeEffect.srcInstance and activeSkill.activeEffect.srcInstance.corrupted and not (activeSkill.activeEffect.srcInstance.fromItem or activeSkill.activeEffect.srcInstance.fromTree or activeSkill.activeEffect.grantedEffect.fromItem or activeSkill.activeEffect.grantedEffect.fromTree) then
 		skillModList:NewMod("GemCorruptionLevel", "BASE", activeSkill.activeEffect.srcInstance.corruptLevel, "Corruption")
+		activeSkill.skillCfg.skillCond["GemCorrupted"] = true
 	end
-	for _, supportProperty in ipairs(skillModList:Tabulate("LIST", activeSkill.skillCfg, "SupportedGemProperty")) do
+	for _, supportProperty in ipairs(getSourceGemPropertyInfo(env, activeSkill)) do
 		local value = supportProperty.value
-		if value.keyword == "grants_active_skill" and activeSkill.activeEffect.gemData and not activeSkill.activeEffect.gemData.tags.support  then
+		if value.keyword == "grants_active_skill" then
 			activeEffect[value.key] = activeEffect[value.key] + value.value
-			skillModList:NewMod("GemSupport".. value.key:gsub("^%l", string.upper), "BASE", value.value, supportProperty.mod.source, #supportProperty.mod > 0 and supportProperty.mod[1] or nil)
+			local gemTag = supportProperty.mod[1]
+			gemTag = gemTag and gemTag.type == "GemTag" and gemTag or nil
+			skillModList:NewMod("GemSupport".. value.key:gsub("^%l", string.upper), "BASE", value.value, supportProperty.mod.source, gemTag)
 		end
 	end
 
@@ -761,6 +797,12 @@ function calcs.buildActiveSkillModList(env, activeSkill)
 	if activeStatSet and activeStatSet.levels then
 		for k, v in pairs(activeStatSet.levels[activeEffect.level] or { }) do
 			grantedEffectLevel[k] = v
+		end
+	end
+	if activeEffect.srcInstance and activeEffect.srcInstance.noReservation then
+		for _, resource in ipairs({ "mana", "life", "spirit" }) do
+			grantedEffectLevel[resource.."ReservationFlat"] = 0
+			grantedEffectLevel[resource.."ReservationPercent"] = 0
 		end
 	end
 	activeEffect.grantedEffectLevel = grantedEffectLevel
@@ -996,6 +1038,15 @@ function calcs.buildActiveSkillModList(env, activeSkill)
 			if tag.type == "GlobalEffect" then
 				effectType = tag.effectType
 				effectName = tag.effectName or activeGrantedEffect.name
+				if activeSkill.minion and activeSkill.minion.minionData then
+					if effectName:find("{0}", 1, true) then
+						effectName = effectName:gsub("{0}", activeSkill.minion.minionData.name)
+					elseif activeGrantedEffect.minionList and effectName:match("^Companion") then
+						effectName = "Companion: "..activeSkill.minion.minionData.name
+					elseif activeGrantedEffect.minionList and effectName:match("^Spectre") then
+						effectName = "Spectre: "..activeSkill.minion.minionData.name
+					end
+				end
 				effectTag = tag
 				break
 			end

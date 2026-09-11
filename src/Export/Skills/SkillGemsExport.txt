@@ -306,15 +306,6 @@
 #mods
 #skillEnd
 
-#skill UniqueHeraldOfAshPlayer
-#set UniqueHeraldOfAshPlayer
-#flags
-#mods
-#set UniqueHeraldOfAshOnKillPlayer
-#flags
-#mods
-#skillEnd
-
 #skill HeraldOfBloodPlayer
 #set HeraldOfBloodPlayer
 #flags
@@ -2323,15 +2314,6 @@
 #mods
 #skillEnd
 
-#skill UniqueHeraldOfThunderPlayer
-#set UniqueHeraldOfThunderPlayer
-#flags
-#mods
-#set UniqueHeraldOfThunderOnKillPlayer
-#flags
-#mods
-#skillEnd
-
 #skill IceShotPlayer
 #set IceShotPlayer
 #flags
@@ -3542,6 +3524,12 @@
 
 
 						--------- Active Intelligence ---------
+#skill AbyssalPactPlayer
+#set AbyssalPactPlayer
+#flags
+#mods
+#skillEnd
+
 #skill ArcPlayer
 #set ArcPlayer
 #flags
@@ -4093,15 +4081,6 @@
 #mods
 #skillEnd
 
-#skill UniqueHeraldOfIcePlayer
-#set UniqueHeraldOfIcePlayer
-#flags
-#mods
-#set UniqueHeraldOfIceOnKillPlayer
-#flags
-#mods
-#skillEnd
-
 #skill HexblastPlayer
 #set HexblastPlayer
 #flags
@@ -4634,6 +4613,12 @@
 #mods
 #skillEnd
 
+#skill AbyssalLivingBomb
+#set AbyssalLivingBomb
+#flags
+#mods
+#skillEnd
+
 #skill VaultingImpactPlayer
 #set VaultingImpactPlayer
 #flags
@@ -4761,17 +4746,6 @@
 
 #skill SupportAtzirisAllurePlayer
 #set SupportAtzirisAllurePlayer
-#mods
-#skillEnd
-
-#skill SupportAtzirisCallPlayer
-#set SupportAtzirisCallPlayer
-#mods
-#skillEnd
-
-#skill TriggeredAtzirisCallPlayer
-#set TriggeredAtzirisCallPlayer
-#flags
 #mods
 #skillEnd
 
@@ -6358,6 +6332,33 @@
 #flags
 #mods
 #set GrimPillarsExplodePlayer
+#flags
+#mods
+#skillEnd
+
+#skill UniqueHeraldOfAshPlayer
+#set UniqueHeraldOfAshPlayer
+#flags
+#mods
+#set UniqueHeraldOfAshOnKillPlayer
+#flags
+#mods
+#skillEnd
+
+#skill UniqueHeraldOfIcePlayer
+#set UniqueHeraldOfIcePlayer
+#flags
+#mods
+#set UniqueHeraldOfIceOnKillPlayer
+#flags
+#mods
+#skillEnd
+
+#skill UniqueHeraldOfThunderPlayer
+#set UniqueHeraldOfThunderPlayer
+#flags
+#mods
+#set UniqueHeraldOfThunderOnKillPlayer
 #flags
 #mods
 #skillEnd

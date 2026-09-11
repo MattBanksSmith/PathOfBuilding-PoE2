@@ -101,9 +101,10 @@ Variant: Pre 0.4.0
 Variant: Pre 0.5.0
 Variant: Current
 Source: Drops from unique{Olroth, Origin of the Fall}
+Requires Level 60
 Implicits: 2
 Grants Skill: Raise Shield
-Grants Skill: Cast on Block
+Grants Skill: Level (1-20) Cast on Block
 {variant:4}+(50-100) to maximum Runic Ward
 {variant:1}(100-150)% increased Armour
 {variant:2}(150-200)% increased Armour
@@ -136,12 +137,15 @@ for 4 seconds, every 0.25 seconds while raised
 ]],[[
 Wulfsbane
 Painted Tower Shield
+Version: Pre 0.3.0
+Version: Current
 Implicits: 1
 Grants Skill: Raise Shield
 +(40-60) to maximum Life
 +(10-15) to Strength
 +(60-80) to Stun Threshold
-Permanently Intimidate enemies on Block
+{version:2}Intimidate Enemies on Block for 8 seconds
+{version:1}Permanently Intimidate enemies on Block
 ]],
 -- Shield: Evasion
 [[
@@ -222,7 +226,7 @@ Spiked Buckler
 League: Dawn of the Hunt
 Implicits: 1
 Grants Skill: Parry
-(50-80)% increased Evasion Rating
+(60-100)% increased Evasion Rating
 +(10-15)% to all Elemental Resistances
 Parrying applies 10 Stacks of Critical Weakness
 100% increased Parry Damage
@@ -332,6 +336,7 @@ No Movement Speed Penalty while Shield is Raised
 ]],[[
 Merit of Service
 Pelage Targe
+Source: No longer obtainable
 Variant: Pre 0.3.0
 Variant: Current
 Implicits: 1
@@ -352,7 +357,7 @@ Variant: Current
 Implicits: 1
 Grants Skill: Raise Shield
 {variant:1,2}(30-40)% increased Block chance
-{variant:3}(10-15)% increased Block chance
+{variant:3}(15-20)% increased Block chance
 (30-50)% increased Armour and Energy Shield
 {variant:1}+(15-30) to maximum Mana
 {variant:2,3}+(50-70) to maximum Mana
@@ -373,6 +378,7 @@ Variant: Pre 0.2.0
 Variant: Pre 0.4.0
 Variant: Current
 Source: Drops from unique{Trialmaster} in normal{The Trial of Chaos}
+Requires Level 48
 Implicits: 1
 Grants Skill: Raise Shield
 {variant:1}(333-666)% increased effect of Socketed Soul Cores
@@ -397,7 +403,6 @@ Grants Skill: Raise Shield
 ]],[[
 Prism Guardian
 Sectarian Crest Shield
-Requires Level 65
 League: Dawn of the Hunt
 Variant: Pre 0.2.1
 Variant: Pre 0.4.0
@@ -424,7 +429,6 @@ Regenerate 3% of maximum Life per second while on Low Life
 ]],[[
 Saffell's Frame
 Emblem Crest Shield
-Requires Level 16
 Implicits: 1
 Grants Skill: Raise Shield
 +(15-25)% to Fire Resistance

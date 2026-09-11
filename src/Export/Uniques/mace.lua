@@ -6,8 +6,6 @@ return {
 Brutus' Lead Sprinkler
 Morning Star
 League: Runes of Aldur
-Implicits: 1
-Grants Skill: Level (1-20) Molten Shower
 UniqueMoltenShowerSkill1
 UniqueLocalIncreasedPhysicalDamagePercent26
 UniqueLocalIncreasedAttackSpeed33
@@ -20,7 +18,7 @@ Variant: Pre 0.1.1
 Variant: Current
 {variant:1}UniqueLocalAddedPhysicalDamage5[3,4][6,8]
 {variant:2}UniqueLocalAddedPhysicalDamage5
-UniqueLocalIncreasedAccuracy1
+UniqueLocalIncreasedAccuracy2
 {variant:2}UniqueLocalIncreasedAttackSpeed12
 {variant:1}UniqueStrength15[5,10]
 {variant:2}UniqueStrength15
@@ -41,6 +39,7 @@ UniqueLocalCullingStrikeFrozenEnemies1
 Marohi Erqi
 Totemic Greatclub
 League: Rise of the Abyssal
+Base Implicits: false
 Implicits: 1
 MaceImplicitLocalCrushOnHit1
 UniqueStrengthRequirements3
@@ -55,13 +54,12 @@ Torment Club
 League: Dawn of the Hunt
 Variant: Pre 0.2.1
 Variant: Current
-Implicits: 1
-Grants Skill: Level (1-20) Thundergod's Wrath
+UniqueGrantsCastLightningSpellOnHit1
 UniqueIntelligenceRequirements2
 UniqueStrengthRequirements2
 {variant:1}UniqueLocalIncreasedPhysicalDamagePercent11[150,200]
 {variant:2}UniqueLocalIncreasedPhysicalDamagePercent11
-UniqueLocalIncreasedAttackSpeed20
+UniqueLocalIncreasedAttackSpeed19
 {variant:1}UniqueGlobalLightningGemLevel1
 {variant:2}UniqueGlobalLightningGemLevel2
 ]],[[
@@ -79,8 +77,8 @@ Torment Club
 Source: Drops from unique{Olroth, Origin of the Fall}
 Variant: Pre 0.2.0
 Variant: Current
-{variant:1}UniqueLocalAddedLightningDamage1[1,1][60,80]
-{variant:2}UniqueLocalAddedLightningDamage1
+{variant:1}UniqueLocalAddedLightningDamage4[1,1][60,80]
+{variant:2}UniqueLocalAddedLightningDamage4
 UniqueLocalIncreasedAccuracy5
 UniqueLocalIncreasedAttackSpeed10
 UniqueMaximumLightningDamagePerPower1
@@ -88,8 +86,7 @@ UniqueMaximumLightningDamagePerPower1
 Sadist's Mercy
 Flanged Mace
 League: Runes of Aldur
-Implicits: 1
-Grants Skill: Level (1-20) Harbinger of Madness
+UniqueHarbingerOfMadnessSkill1
 UniqueLocalIncreasedPhysicalDamagePercent27
 UniqueLocalCriticalStrikeChance11
 UniqueLocalIncreasedAttackSpeed28
@@ -157,10 +154,9 @@ Studded Greatclub
 Variant: Pre 0.1.1
 Variant: Current
 {variant:1}UniqueLocalAddedPhysicalDamage9[10,12][18,22]
-{variant:2}UniqueLocalAddedPhysicalDamage9
-{variant:1}UniqueLocalAddedLightningDamage3[1,1][36,42]
-{variant:2}UniqueLocalAddedLightningDamage3
-UniqueLocalIncreasedAttackSpeed5
+{variant:1}UniqueLocalAddedLightningDamage10[1,1][36,42]
+{variant:2}UniqueLocalAddedLightningDamage10
+UniqueLocalIncreasedAttackSpeed7
 UniqueLocalAllDamageCanElectrocute1
 ]],[[
 Chober Chaber
@@ -171,7 +167,7 @@ Variant: Current
 UniqueIntelligenceRequirements1
 {variant:1}UniqueLocalIncreasedPhysicalDamagePercent4
 {variant:2,3}UniqueLocalAddedPhysicalDamage12
-UniqueIncreasedMana22
+UniqueIncreasedMana28
 {variant:2,3}UniqueIncreasedSpirit8
 {variant:1}UniqueLocalCriticalStrikeChance3
 UniqueMinionDamageAffectsYou1
@@ -180,8 +176,6 @@ UniqueMinionDamageAffectsYou1
 The Empty Roar
 Cultist Greathammer
 League: Dawn of the Hunt
-Implicits: 1
-MaceImplicitSplashDamage1
 UniqueLocalAddedPhysicalDamage15
 UniqueLifeLeechLocal2
 UniqueLocalChanceToBleed1
@@ -217,20 +211,16 @@ Hrimnor's Hymn
 Oak Greathammer
 Variant: Pre 0.1.1
 Variant: Current
-Implicits: 1
-MaceImplicitStunDamageIncrease1
 {variant:1}UniqueLocalIncreasedPhysicalDamagePercent6[60,80]
 {variant:2}UniqueLocalIncreasedPhysicalDamagePercent6
-UniqueStrength3
+UniqueStrength26
 UniqueLifeGainedFromEnemyDeath6
 UniqueAftershockChance1
 ]],[[
 Quecholli
 Crumbling Maul
-Implicits: 1
-MaceImplicitEnemiesExplodeOnCrit1
-UniqueLocalIncreasedPhysicalDamagePercent4
-UniqueAllAttributes7
+UniqueLocalIncreasedPhysicalDamagePercent8
+UniqueAllAttributes8
 UniqueLifeGainedFromEnemyDeath8
 UniqueLocalCritChanceOverride1
 UniqueLocalNoCriticalStrikeMultiplier1
@@ -239,9 +229,7 @@ Serle's Grit
 Kalguuran Forgehammer
 League: Runes of Aldur
 Sockets: S S S
-Implicits: 2
-Grants Skill: Level (1-20) Runic Tempering
-MaceImplicitHasXSockets
+RunicTemperingUnique__1
 UniqueMaximumQualityOverride2
 UniqueLocalAddedPhysicalDamage25
 UniqueStrength44
@@ -260,8 +248,7 @@ UniqueLocalAllDamageCanChill1
 Twisted Empyrean
 Aberrant Sledge
 League: Runes of Aldur
-Implicits: 1
-Grants Skill: Level (1-20) Starborn Onslaught
+UniqueStarbornOnslaughtSkill1
 UniqueLocalIncreasedPhysicalDamagePercent22
 UniqueLocalAddedColdDamage9
 UniqueIncreasedMana53
@@ -285,7 +272,7 @@ Temple Maul
 League: Dawn of the Hunt
 UniqueDexterityRequirements1
 UniqueStrengthRequirements1
-UniqueLocalIncreasedPhysicalDamagePercent5
+UniqueLocalIncreasedPhysicalDamagePercent10
 UniqueLocalIncreasedAttackSpeed15
 UniqueLightRadius17
 UniqueAlwaysHits1

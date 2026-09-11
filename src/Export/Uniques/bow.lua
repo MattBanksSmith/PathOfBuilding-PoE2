@@ -9,13 +9,11 @@ Variant: 0.2.0
 Variant: 0.3.0
 Variant: 0.5.0
 Variant: Current
-Implicits: 1
-BowImplicitAdditionalArrows1
 {variant:1}UniqueLocalCriticalMultiplier1[50,70]
 {variant:2}UniqueLocalCriticalMultiplier1[30,40]
 {variant:3,4}UniqueLocalCriticalMultiplier1
 {variant:1,2,3}UniqueAdditionalArrow1
-UniqueLifeGainedFromEnemyDeath4
+UniqueLifeGainedFromEnemyDeath5
 UniqueManaGainedFromEnemyDeath6
 {variant:4}UniqueAdditionalArrowChance1
 ]],[[
@@ -25,17 +23,15 @@ League: Dawn of the Hunt
 Variant: Pre 0.4.0
 Variant: Current
 UniqueLocalAddedPhysicalDamage7
-UniqueDexterity4
-UniqueManaRegeneration3
+UniqueDexterity17
+UniqueManaRegeneration5
 {variant:1}UniqueLocalPhysicalDamageAddedAsEachElement1[50,50]
 {variant:2}UniqueLocalPhysicalDamageAddedAsEachElement1
 ]],[[
 Fairgraves' Curse
 Artillery Bow
 League: Rise of the Abyssal
-Implicits: 2
-Grants Skill: Level (1-20) Phantasmal Arrow
-BowImplicitProjectileAttackRange1
+GhostfuseArrowUnique_1
 UniqueLocalAddedFireDamage5
 UniqueIgniteChanceIncrease4
 UniqueIgniteEffect3
@@ -46,8 +42,6 @@ GhostflameOnHitUnique__1
 Ironbound
 Warden Bow
 League: Runes of Aldur
-Implicits: 1
-BowImplicitLocalChanceToChain1
 UniqueLocalIncreasedPhysicalDamageReductionRating6
 UniqueLocalIncreasedAttackSpeed31
 UniqueBlockPercent3
@@ -58,8 +52,7 @@ UniqueProjectilesReturnIfPiercedArmourBroken1
 Periphery
 Heartwood Shortbow
 League: Runes of Aldur
-Implicits: 1
-Grants Skill: Level (1-20) Azmerian Swarms
+UniqueAzmerianSwarmSkill1
 UniqueLocalAddedFireDamage9
 UniqueLocalAddedColdDamage8
 UniqueLocalAddedLightningDamage12
@@ -74,7 +67,7 @@ Variant: Current
 UniqueLocalIncreasedPhysicalDamagePercent14
 UniqueLocalIncreasedAccuracy8
 UniqueLocalIncreasedAttackSpeed22
-UniqueDexterity44
+UniqueDexterity42
 UniqueLioneyeDodgeRoll1
 {variant:1}UniqueRepeatNoEnemyInPresence[1,1]
 {variant:2}UniqueRepeatNoEnemyInPresence
@@ -113,7 +106,7 @@ Variant: Pre 0.4.0
 Variant: Current
 {variant:1}UniqueLocalAddedLightningDamage6[1,1][200,300]
 {variant:2}UniqueLocalAddedLightningDamage6
-UniqueLocalIncreasedAttackSpeed17
+UniqueLocalIncreasedAttackSpeed13
 UniqueLightningDamageConvertToChaos1
 UniqueChaosDamageCanShock1
 ]],[[

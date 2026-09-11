@@ -7,22 +7,36 @@ Atziri's Splendour
 Sacrificial Regalia
 Source: Drops from unique{Atziri's Vault} in normal{Vaal Temple}
 League: Fate of the Vaal
+Has Alt Variant: true
+Selected Variant: 1
+Selected Alt Variant: 5
 Variant: Helmet
 Variant: Gloves
 Variant: Boots
 Variant: Shield
+Variant: Armour/Evasion/Energy Shield
+Variant: Armour
+Variant: Evasion
+Variant: Energy Shield
+Variant: Armour/Evasion
+Variant: Armour/Energy Shield
+Variant: Evasion/Energy Shield
 Sockets: S S S S S S
-Implicits: 1
-BodyArmourImplicitLevelOfAllCorruptedSkillGems1
 UniqueOnlySocketSoulCores1
-UniqueLocalNoAttributeRequirements2
-UniqueAtziriSplendourArmourEvasionAndEnergyShield1
+UniqueLocalNoAttributeRequirements1
+{variant:5}{group:2}UniqueAtziriSplendourArmourEvasionAndEnergyShield1
+{variant:6}{group:2}UniqueAtziriSplendourArmour1
+{variant:7}{group:2}UniqueAtziriSplendourEvasion1
+{variant:8}{group:2}UniqueAtziriSplendourEnergyShield1
+{variant:9}{group:2}UniqueAtziriSplendourArmourAndEvasion1
+{variant:10}{group:2}UniqueAtziriSplendourArmourAndEnergyShield1
+{variant:11}{group:2}UniqueAtziriSplendourEnergyShieldAndEvasion1
 UniqueAllResistances27
 UniqueCorruptedSkillGemManaCostConvertedToLife1
-{variant:1}UniqueLocalSoulCoreAlsoGainBenefitsFromHelmet1
-{variant:2}UniqueLocalSoulCoreAlsoGainBenefitsFromGloves1
-{variant:3}UniqueLocalSoulCoreAlsoGainBenefitsFromBoots1
-{variant:4}UniqueLocalSoulCoreAlsoGainBenefitsFromShield1
+{variant:1}{group:1}UniqueLocalSoulCoreAlsoGainBenefitsFromHelmet1
+{variant:2}{group:1}UniqueLocalSoulCoreAlsoGainBenefitsFromGloves1
+{variant:3}{group:1}UniqueLocalSoulCoreAlsoGainBenefitsFromBoots1
+{variant:4}{group:1}UniqueLocalSoulCoreAlsoGainBenefitsFromShield1
 ]],[[
 Blackbraid
 Fur Plate
@@ -76,8 +90,6 @@ UniqueAttackerTakesDamage3
 Geofri's Sanctuary
 Revered Vestments
 League: Runes of Aldur
-Implicits: 1
-BodyArmourImplicitMaximumElementalResistance1
 UniqueLocalIncreasedPhysicalDamageReductionRatingPercent32
 UniqueAllResistances28
 UniqueMaximumEnergyShieldIsPercentOfStrength1
@@ -89,12 +101,13 @@ Greed's Embrace
 Vaal Cuirass
 UniqueIncreasedStrengthRequirements1
 UniqueMovementVelocity8
-UniqueLocalIncreasedPhysicalDamageReductionRatingPercent2
+UniqueLocalIncreasedPhysicalDamageReductionRatingPercent15
 UniqueItemFoundRarityIncrease12
 UniqueFireResist12
 ]],[[
 The Road Warrior
 Raider Plate
+Source: No longer obtainable
 Variant: Pre 0.1.1
 Variant: Current
 {variant:1}UniqueLocalIncreasedPhysicalDamageReductionRatingPercent7
@@ -110,16 +123,14 @@ Kaom's Heart
 Conqueror Plate
 Variant: Pre 0.2.1
 Variant: Current
-Implicits: 1
-BodyArmourImplicitIncreasedStunThreshold1
 {variant:1}UniqueIncreasedLife2[1000,1000]
 {variant:2}UniqueIncreasedLife2
 UniqueRemoveSpirit1
 ]],[[
 Kingsguard
 Full Plate
-UniqueIncreasedLife14
-UniqueIncreasedMana7
+UniqueIncreasedLife28
+UniqueIncreasedMana17
 UniqueAllResistances8
 UniqueEnduranceChargeDuration1
 UniqueLifeGainedOnEnduranceChargeConsumed1
@@ -140,9 +151,9 @@ Wandering Reliquary
 Steel Plate
 Variant: Pre 0.1.1
 Variant: Current
-UniqueLocalIncreasedPhysicalDamageReductionRatingPercent7
+UniqueLocalIncreasedPhysicalDamageReductionRatingPercent13
 UniqueIncreasedMana7
-UniqueStrength2
+UniqueStrength12
 {variant:2}UniqueStunThreshold16
 UniquePhysicalDamagePreventedRecoup1
 ]],
@@ -152,8 +163,8 @@ Ashrend
 Pathfinder Coat
 Variant: Pre 0.1.1
 Variant: Current
-UniqueIncreasedLife3
-{variant:2}UniqueStrength29
+UniqueIncreasedLife16
+{variant:2}UniqueStrength31
 {variant:1}UniqueFireResist8[20,30]
 {variant:2}UniqueFireResist8
 UniqueCannotBeIgnited1
@@ -162,8 +173,7 @@ UniquePhysicalAttackDamageTaken1
 The Auspex
 Exquisite Vest
 League: Runes of Aldur
-Implicits: 1
-Grants Skill: Level (1-20) Mist Raven
+UniqueMistRavenCompanionSkill1
 UniqueLocalIncreasedEvasionRatingPercent35
 UniqueIncreasedLife57
 UniqueReducedLocalAttributeRequirements6
@@ -178,7 +188,7 @@ Variant: Current
 {variant:2,3}UniqueLocalIncreasedEvasionRatingPercent22
 UniqueFlaskLifeRecoveryRate2
 UniqueFlaskManaRecoveryRate1
-UniqueDexterity3
+UniqueDexterity11
 UniqueColdResist10
 {variant:3}UniqueEvasionAppliesToDeflection1
 ]],[[
@@ -188,22 +198,22 @@ Variant: Pre 0.1.1
 Variant: Current
 {variant:1}UniqueLocalIncreasedEvasionRatingPercent5[40,80]
 {variant:2}UniqueLocalIncreasedEvasionRatingPercent5
-UniqueIncreasedLife3
-{variant:2}UniqueLifeRegeneration11
+UniqueIncreasedLife4
+{variant:2}UniqueLifeRegeneration15
 {variant:1}UniqueGainRageWhenHit1[3,3]
 {variant:2}UniqueGainRageWhenHit1
 UniqueGainRageWhenCrit1
 ]],[[
 Dustbloom
 Studded Vest
-UniqueLocalIncreasedEvasionRatingPercent4
-UniqueColdResist10
+UniqueLocalIncreasedEvasionRatingPercent9
+UniqueColdResist11
 UniqueFragileRegrowth1
 ]],[[
 Foxshade
 Quilted Vest
 UniqueLocalIncreasedEvasionRating2
-UniqueDexterity3
+UniqueDexterity8
 UniqueMovementVelocityOnFullLife1
 UniqueGlobalEvasionOnFullLife1
 ]],[[
@@ -213,8 +223,6 @@ Variant: Pre 0.4.0
 Variant: Pre 0.5.0
 Variant: Current
 League: Dawn of the Hunt
-Implicits: 1
-BodyArmourImplicitIncreasedAilmentThreshold1
 {variant:1}UniqueLocalIncreasedEvasionRatingPercent33[100,130]
 {variant:2}UniqueLocalIncreasedEvasionRatingPercent33[200,250]
 {variant:3}UniqueLocalIncreasedEvasionRatingPercent33
@@ -234,7 +242,7 @@ Variant: Current
 {variant:2,3}UniqueLocalIncreasedEvasionRatingPercent23
 {variant:1}UniqueIncreasedLife1[30,50]
 {variant:2,3}UniqueIncreasedLife1
-UniqueChaosResist1
+UniqueChaosResist8
 UniqueLifeRegeneration1
 UniqueCannotBePoisoned1
 {variant:3}UniqueEvasionAppliesToDeflection2
@@ -244,7 +252,7 @@ Smuggler Coat
 Variant: Pre 0.2.0
 Variant: Pre 0.4.0
 Variant: Current
-UniqueLocalIncreasedEvasionRatingPercent4
+UniqueLocalIncreasedEvasionRatingPercent19
 UniqueFireResist17
 UniqueColdResist17
 UniqueLightningResist14
@@ -254,7 +262,7 @@ UniqueLightningResist14
 ]],[[
 The Rat Cage
 Scout's Vest
-UniqueLocalIncreasedEvasionRatingPercent4
+UniqueLocalIncreasedEvasionRatingPercent11
 UniqueIncreasedLife26
 UniqueReducedLocalAttributeRequirements1
 UniqueFireDamageTakenAsPhysical1
@@ -262,12 +270,11 @@ UniqueFireDamageTakenAsPhysical1
 Sands of Silk
 Shrouded Vest
 League: Dawn of the Hunt
-Implicits: 1
-Grants Skill: Level (1-20) Blink
+UniqueGrantsBlinkSand1
 UniqueLocalIncreasedEvasionRatingPercent20
-UniqueIncreasedMana38
-UniqueDexterity2
-UniqueIntelligence6
+UniqueIncreasedMana50
+UniqueDexterity25
+UniqueIntelligence28
 UniqueFireResist34
 GlobalCooldownRecoveryUnique__2
 ]],[[
@@ -327,7 +334,7 @@ The Covenant
 Altar Robe
 Variant: Pre 0.4.0
 Variant: Current
-{variant:2}Grants Skill: Level 14 Life Remnants
+{variant:2}UniqueGrantsLifeRemnants1
 UniqueLocalIncreasedEnergyShieldPercent11
 UniqueIncreasedLife25
 {variant:1}UniqueSpellDamageLifeLeech1[500,500]
@@ -349,7 +356,7 @@ UniqueChaosResist4
 Gloamgown
 Elementalist Robe
 League: Dawn of the Hunt
-UniqueLocalIncreasedEnergyShieldPercent16
+UniqueLocalIncreasedEnergyShieldPercent23
 UniqueIncreasedSpirit10
 UniqueColdResist31
 UniqueEnergyShieldRechargeRate6
@@ -359,8 +366,8 @@ Necromantle
 Bone Raiment
 Variant: Pre 0.1.1
 Variant: Current
-UniqueIncreasedLife3
-UniqueIncreasedMana5
+UniqueIncreasedLife18
+UniqueIncreasedMana8
 {variant:2}UniqueMinionChaosResistance1
 UniqueMinionLifeGainAsEnergyShield1
 UniqueMinionReviveSpeed1
@@ -369,7 +376,7 @@ Prayers for Rain
 Keth Raiment
 Variant: Pre 0.1.1
 Variant: Current
-UniqueLocalIncreasedEnergyShieldPercent1
+UniqueLocalIncreasedEnergyShieldPercent9
 UniqueIntelligence13
 {variant:2}UniqueLightningResist22
 UniqueEnergyShieldDelay2
@@ -380,13 +387,11 @@ Enlightened Robe
 League: Dawn of the Hunt
 Variant: Pre 0.4.0
 Variant: Current
-Implicits: 1
-BodyArmourImplicitManaRegeneration1
 {variant:2}UniqueLocalIncreasedEnergyShieldPercent27
 UniqueIncreasedSpirit11
-UniqueIntelligence39
+UniqueIntelligence37
 {variant:1}UniqueAllResistances6
-UniqueEnergyShieldRechargeRate4
+UniqueEnergyShieldRechargeRate7
 UniqueEnergyShieldAppliesElementalReduction1
 ]],[[
 Temporalis
@@ -395,7 +400,7 @@ Source: Drops from unique{Zarokh, the Temporal}
 Variant: Pre 0.2.0
 Variant: Current
 UniqueLocalIncreasedEnergyShield9
-UniqueAllResistances6
+UniqueAllResistances13
 UniqueDamageTakenGainedAsLife1
 UniqueDamageTakenGoesToMana2
 {variant:1}UniqueFlatCooldownRecovery1[-4000,-2000]
@@ -405,10 +410,10 @@ Tetzlapokal's Desire
 Votive Raiment
 Variant: Pre 0.1.1
 Variant: Current
-UniqueLocalIncreasedEnergyShieldPercent11
-UniqueStrength10
+UniqueLocalIncreasedEnergyShieldPercent17
+UniqueStrength22
 {variant:2}UniqueIntelligence32
-UniqueChaosResist1
+UniqueChaosResist13
 UniqueLifeRecharge1
 ]],[[
 Vis Mortis
@@ -435,9 +440,9 @@ Belly of the Beast
 Explorer Armour
 Variant: Pre 0.1.1
 Variant: Current
-UniqueLocalIncreasedArmourAndEvasion7
+UniqueLocalIncreasedArmourAndEvasion16
 UniqueIncreasedLife31
-UniqueStunThreshold9
+UniqueStunThreshold11
 UniqueInstantLifeFlaskRecovery1
 {variant:2}UniqueAttackerTakesDamage6
 ]],[[
@@ -453,19 +458,17 @@ Heroic Armour
 League: Dawn of the Hunt
 Variant: Pre 0.4.0
 Variant: Current
-Implicits: 4
-Grants Skill: Level (1-20) Herald of Ash
-Grants Skill: Level (1-20) Herald of Ice
-Grants Skill: Level (1-20) Herald of Thunder
-BodyArmourImplicitIncreasedLife1
+UniqueGrantsHeraldOfAsh1
+UniqueGrantsHeraldOfIce1
+UniqueGrantsHeraldOfThunder1
 UniqueAllResistances20
 UniqueEnemiesInPresenceNoElementalResist1
 {variant:2}UniqueHeraldDamage1
 ]],[[
 Doryani's Prototype
 Scale Mail
-UniqueLocalIncreasedArmourAndEvasion6
-BodyArmourImplicitIncreasedLife1
+UniqueLocalIncreasedArmourAndEvasion13
+UniqueIncreasedLife29
 UniqueArmourAppliesToLightningDamage1
 UniqueNearbyEnemyLightningResistanceEqual1
 UniqueLightningResistNoReduction1
@@ -485,7 +488,7 @@ Irongrasp
 Vagabond Armour
 Variant: Pre 0.1.1
 Variant: Current
-UniqueLocalIncreasedArmourAndEvasion7
+UniqueLocalIncreasedArmourAndEvasion9
 {variant:2}UniqueStrength32
 UniqueStunThreshold9
 UniqueIronGrip1
@@ -496,11 +499,10 @@ Ancestral Mail
 League: Rise of the Abyssal
 Variant: Pre 0.4.0
 Variant: Current
-Implicits: 1
-Grants Skill: Level (1-20) Valako's Charge
+ValakosLuckUnique__1
 UniqueLocalIncreasedArmourAndEvasion14
 UniqueIncreasedLife30
-UniqueDexterity44
+UniqueDexterity43
 UniqueLightningResist13
 {variant:1}UniquePhysicalDamageTakenAsLightningPercent1[20,40]
 {variant:2}UniquePhysicalDamageTakenAsLightningPercent1
@@ -537,7 +539,7 @@ Pragmatism
 Explorer Armour
 Source: Drops from unique{The King in the Mists} in normal{Crux of Nothingness}
 UniqueLocalIncreasedArmourAndEvasion22
-UniqueAllResistances6
+UniqueAllResistances15
 UniqueChaosResist19
 UniqueCharmsNoCharges1
 ]],[[
@@ -556,9 +558,9 @@ Knight Armour
 League: Dawn of the Hunt
 Variant: Pre 0.4.0
 Variant: Current
-UniqueLocalIncreasedArmourAndEvasion30
+UniqueLocalIncreasedArmourAndEvasion28
 UniqueIncreasedLife48
-UniqueChaosResist35
+UniqueChaosResist28
 UniqueAilmentThreshold2
 {variant:1}UniqueLifeLossReservesLife1[5000,5000]
 {variant:2}UniqueLifeLossReservesLife1
@@ -569,10 +571,10 @@ Couture of Crimson
 Gilded Vestments
 Variant: Pre 0.4.0
 Variant: Current
-UniqueLocalIncreasedArmourAndEnergyShield5
+UniqueLocalIncreasedArmourAndEnergyShield11
 {variant:1}UniqueMaximumLifeIncrease4[-25,-25]
 {variant:2}UniqueMaximumLifeIncrease4
-UniqueReducedBleedDuration1
+UniqueReducedBleedDuration2
 UniqueLifeLeechOvercapLife1
 ]],[[
 Decree of Loyalty
@@ -587,9 +589,9 @@ UniqueDamageOvertimeDoesNotBypassEnergyShield1
 ]],[[
 Enfolding Dawn
 Pilgrim Vestments
-UniqueLocalIncreasedArmourAndEnergyShield5
+UniqueLocalIncreasedArmourAndEnergyShield6
 UniqueIncreasedSpirit1
-UniqueAllResistances2
+UniqueAllResistances5
 UniqueNoManaPerIntelligence1
 ]],[[
 Reverie
@@ -597,12 +599,11 @@ Shaman Mantle
 Variant: Pre 0.1.1
 Variant: 0.5.0
 Variant: Current
-Implicits: 1
-{variant:3}Grants Skill: Level (1-20) Rite of Restoration
+{variant:3}UniqueSigilOfLifeSkill1
 UniqueLocalIncreasedArmourAndEnergyShield7
 UniqueFireResist9
-{variant:1}UniqueChaosResist2[13,17]
-{variant:2,3}UniqueChaosResist2
+{variant:1}UniqueChaosResist7[13,17]
+{variant:2,3}UniqueChaosResist7
 {variant:1}UniqueReducedFlaskChargesUsed1[25,50]
 {variant:2}UniqueReducedFlaskChargesUsed1
 {variant:1,2}UniqueFlaskChanceToNotConsume1
@@ -631,12 +632,10 @@ Corvus Mantle
 League: Dawn of the Hunt
 Variant: Pre 0.4.0
 Variant: Current
-Implicits: 1
-BodyArmourImplicitIncreasedSpirit1
-UniqueLocalIncreasedArmourAndEnergyShield23
-UniqueStrength33
+UniqueLocalIncreasedArmourAndEnergyShield19
+UniqueStrength35
 UniqueIntelligence33
-UniqueChaosResist33
+UniqueChaosResist26
 {variant:1}UniqueDamageTakenGainedAsLife2[5,10]
 {variant:2}UniqueDamageTakenGainedAsLife2
 UniqueLifeRecoupAppliesToEnergyShield1
@@ -646,7 +645,7 @@ Sacrificial Mantle
 League: Dawn of the Hunt
 Variant: Pre 0.5.0
 Variant: Current
-UniqueLocalIncreasedArmourAndEnergyShield12
+UniqueLocalIncreasedArmourAndEnergyShield13
 {variant:2}UniqueIncreasedSpirit15
 UniqueStrength42
 UniqueIntelligence40
@@ -657,8 +656,6 @@ UniqueRandomlyCursedWhenTotemsDie1
 The Unleashed
 Revered Vestments
 League: Runes of Aldur
-Implicits: 1
-BodyArmourImplicitMaximumElementalResistance1
 UniqueLocalIncreasedArmourAndEnergyShield26
 UniqueStrengthAndIntelligence1
 UniqueHitDamageBypassesEnergyShieldWhileBelowHalfEnergyShield1
@@ -672,7 +669,7 @@ Variant: Pre 0.4.0
 Variant: Current
 {variant:1}UniqueLocalIncreasedArmourAndEnergyShield9[100,150]
 {variant:2}UniqueLocalIncreasedArmourAndEnergyShield9
-UniqueMaximumManaIncrease2
+UniqueMaximumManaIncrease4
 {variant:2,3}UniqueChaosResist24
 UniquePowerChargeOnCritChance1
 ]],[[
@@ -690,19 +687,17 @@ UniqueGainManaAsExtraArmour1
 [[
 Apron of Emiran
 Hermit Garb
-UniqueLocalIncreasedEvasionAndEnergyShield1
-UniqueDexterity2
+UniqueLocalIncreasedEvasionAndEnergyShield6
+UniqueDexterity12
 UniqueReducedBleedDuration1
 UniqueBleedsAlwaysAggravated1
 ]],[[
 Cospri's Will
 Assassin Garb
 League: Rise of the Abyssal
-Implicits: 2
-Grants Skill: Level (1-20) Withering Presence
-BodyArmourImplicitMovementVelocity1
+UniqueGrantsWitheringPresence1
 UniqueLocalIncreasedEvasionAndEnergyShield18
-UniqueChaosResist32
+UniqueChaosResist30
 UniqueCursesNeverExpire1
 UniqueIgnoreHexproof1
 UniqueWitherNeverExpires1
@@ -720,8 +715,7 @@ UniqueIncreasedEvasionIfHitRecently1
 Forgotten Warden
 Primal Markings
 League: Runes of Aldur
-Implicits: 1
-Grants Skill: Level (1-20) Spirit Vessel
+UniqueSpiritVesselSkill1
 UniqueDeflectionRatingPerMissingEnergyShield1
 UniqueLocalIncreasedEvasionAndEnergyShield20
 UniqueDexterity46
@@ -733,7 +727,7 @@ Waxed Jacket
 Variant: Pre 0.1.1
 Variant: Current
 UniqueLocalIncreasedEvasionRatingPercent4
-UniqueDexterity2
+UniqueDexterity7
 {variant:2}UniqueFireResist29
 UniqueLightRadius2
 UniqueSmokeCloudWhenStationary1
@@ -743,9 +737,8 @@ Anchorite Garb
 Variant: Pre 0.1.1
 Variant: Current
 UniqueIncreasedMana16
-{variant:2}UniqueColdResist27
-{variant:1}UniqueLightningResist7[20,30]
-{variant:2}UniqueLightningResist7
+{variant:1}UniqueLightningResist12[20,30]
+{variant:2}UniqueLightningResist12
 UniquePowerChargeOnHit1
 UniqueLosePowerChargesOnMaxCharges1
 UniqueShockOnMaxPowerCharges1
@@ -756,18 +749,19 @@ Variant: Pre 0.4.0
 Variant: Pre 0.5.0
 Variant: Current
 UniqueLocalIncreasedEvasionAndEnergyShield5
-UniqueLightningResist2
+UniqueLightningResist5
+UniqueColdResist27
 {variant:1,2}UniqueEnergyShieldDelay1
-{variant:2,3}AllDamageTakenCanChillUnique__1
+{variant:2,3}AllDamageTakenCanChillUnique__2
 {variant:3}UniqueEnergyShieldRechargeRate8
 UniqueReverseChill1
 ]],[[
 Zerphi's Serape
 Scalper's Jacket
 League: Dawn of the Hunt
-UniqueLocalIncreasedEvasionAndEnergyShield11
-UniqueIncreasedMana7
-UniqueReducedLocalAttributeRequirements4
+UniqueLocalIncreasedEvasionAndEnergyShield9
+UniqueIncreasedMana21
+UniqueReducedLocalAttributeRequirements3
 UniqueLifeRegenerationRate2
 UniqueManaRegeneration31
 UniqueHasSoulEater1

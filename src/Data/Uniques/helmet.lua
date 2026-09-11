@@ -177,7 +177,7 @@ Variant: Current
 {variant:1}+(40-60) to maximum Mana
 {variant:2}+(60-100) to maximum Mana
 {variant:1}(10-20)% increased Rarity of Items found
-{variant:2}(10-15)% increased Rarity of Items found
+{variant:2}(10-20)% increased Rarity of Items found
 {variant:1}Gain (25-30)% of maximum Life as Extra maximum Energy Shield
 {variant:2}Gain (10-15)% of maximum Life as Extra maximum Energy Shield
 {variant:1}(20-25)% of Damage taken bypasses Energy Shield
@@ -247,6 +247,7 @@ Source: Drops from unique{Zarokh, the Temporal}
 Variant: Pre 0.2.0
 Variant: Pre 0.4.0
 Variant: Current
+Requires Level 52
 +(80-120) to maximum Energy Shield
 +(20-30) to Dexterity
 Enemies in your Presence are Blinded
@@ -440,6 +441,7 @@ Source: Drops from unique{Olroth, Origin of the Fall}
 Variant: Pre 0.4.0
 Variant: Pre 0.5.0
 Variant: Current
+Requires Level 62
 {variant:1}(100-150)% increased Armour and Energy Shield
 {variant:2}(150-250)% increased Armour and Energy Shield
 {variant:3}(240-340)% increased Armour and Energy Shield
@@ -484,6 +486,7 @@ Critical Hits Poison the enemy
 Glimpse of Chaos
 Tribal Mask
 Source: Drops from unique{Trialmaster} in normal{The Trial of Chaos}
+Requires Level 52
 Can be modified while Corrupted
 +(50-150) to maximum Life
 +(50-150) to maximum Mana
@@ -550,6 +553,7 @@ Tribal Mask
 Variant: Pre 0.4.0
 Variant: Equipment
 Variant: Skill Gems
+Has no Attribute Requirements
 (100-150)% increased Evasion and Energy Shield
 (20-30)% increased Critical Hit Chance
 +(13-17)% to Chaos Resistance

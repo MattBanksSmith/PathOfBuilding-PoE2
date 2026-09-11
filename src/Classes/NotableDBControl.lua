@@ -12,7 +12,7 @@ local m_floor = math.floor
 local m_huge = math.huge
 local s_format = string.format
 
-local emotionList = {"Ire", "Guilt", "Greed", "Paranoia", "Envy", "Disgust", "Despair", "Fear", "Suffering", "Isolation" }
+local emotionList = {"Ire", "Guilt", "Greed", "Paranoia", "Envy", "Disgust", "Despair", "Fear", "Suffering", "Isolation", "Contempt", "Ferocity",  "Melancholy"}
 
 ---@param node table
 ---@return boolean
@@ -21,10 +21,14 @@ local function IsAnointableNode(node)
 end
 
 ---@class NotableDBControl : ListControl
-local NotableDBClass = newClass("NotableDBControl", "ListControl", function(self, anchor, rect, itemsTab, db, dbType)
-	local headerHeight = 68
+---@class NotableDBControl: ListControl
+local NotableDBClass = newClass("NotableDBControl", "ListControl")
+
+---@param itemsTab ItemsTab
+function NotableDBClass:NotableDBControl(anchor, rect, itemsTab, db, dbType)
+	local headerHeight = 96
 	local innerRect = {rect[1], rect[2]+headerHeight, rect[3], rect[4]-headerHeight}
-	self.ListControl(anchor, innerRect, 16, "VERTICAL", false)
+	self:ListControl(anchor, innerRect, 16, "VERTICAL", false)
 	self.itemsTab = itemsTab
 	self.db = db
 	self.dbType = dbType
@@ -36,13 +40,13 @@ local NotableDBClass = newClass("NotableDBControl", "ListControl", function(self
 	self.sortDropList = { }
 	self.sortOrder = { }
 	self.sortMode = "NAME"
-	self.controls.sort = new("DropDownControl", {"TOPLEFT",self,"TOPLEFT"}, {0, -headerHeight, 360, 18}, self.sortDropList, function(index, value)
+	self.controls.sort = new("DropDownControl"):DropDownControl({ "TOPLEFT", self, "TOPLEFT" }, { 0, -headerHeight, 360, 18 }, self.sortDropList, function(index, value)
 		self:SetSortMode(value.sortMode)
 	end)
-	self.controls.search = new("EditControl", {"TOPLEFT",self.controls.sort,"BOTTOMLEFT"}, {0, 2, 258, 18}, "", "Search", "%c", 100, function()
+	self.controls.search = new("EditControl"):EditControl({ "TOPLEFT", self.controls.sort, "BOTTOMLEFT" }, { 0, 2, 258, 18 }, "", "Search", "%c", 100, function()
 		self.listBuildFlag = true
 	end, nil, nil, true)
-	self.controls.searchMode = new("DropDownControl", {"LEFT",self.controls.search,"RIGHT"}, {2, 0, 100, 18}, { "Anywhere", "Names", "Modifiers" }, function(index, value)
+	self.controls.searchMode = new("DropDownControl"):DropDownControl({ "LEFT", self.controls.search, "RIGHT" }, { 2, 0, 100, 18 }, { "Anywhere", "Names", "Modifiers" }, function(index, value)
 		self.listBuildFlag = true
 	end)
 
@@ -58,7 +62,7 @@ local NotableDBClass = newClass("NotableDBControl", "ListControl", function(self
 	end
 	self.emotionImages = getEmotionImages()
 
-	self.controls.emotionLabel = new("LabelControl", {"TOPLEFT", self.controls.search, "BOTTOMLEFT"}, {0, 6, 100, 16}, "Emotions: ")
+	self.controls.emotionLabel = new("LabelControl"):LabelControl({ "TOPLEFT", self.controls.search, "BOTTOMLEFT" }, { 0, 6, 100, 16 }, "Emotions: ")
 	self.emotionsAvailable = { }
 	local function emoCheckOnChange(name)
 		self.emotionsAvailable[name] = true
@@ -70,21 +74,29 @@ local NotableDBClass = newClass("NotableDBControl", "ListControl", function(self
 	local function emoCheck(name, relTo)
 		local anchor = {"LEFT", relTo, "RIGHT"}
 		local rect = {2, 0, 26, 26}
-		local ctl = new("CheckBoxControl", anchor, rect, "", emoCheckOnChange(name), "Distilled "..name, true)
+		local ctl = new("CheckBoxControl"):CheckBoxControl(anchor, rect, "", emoCheckOnChange(name), "Distilled " .. name, true)
 		if self.emotionImages then ctl:SetCheckImage(self.emotionImages[name]) end
 		return ctl
 	end
 
 	local emotionCheckBoxes = {}
 	for i,emo in ipairs(emotionList) do
-		local emoCtl = emoCheck(emo, emotionCheckBoxes[i-1] or self.controls.emotionLabel)
+		local emoCtl
+		if i == 11 then
+			local ctl = new("CheckBoxControl"):CheckBoxControl({ "TOPLEFT", emotionCheckBoxes[1], "BOTTOMLEFT" }, { 0, 2, 26, 26 }, "", emoCheckOnChange(emo), "Distilled " .. emo, true)
+			if self.emotionImages then ctl:SetCheckImage(self.emotionImages[emo]) end
+			emoCtl = ctl
+		else
+			emoCtl = emoCheck(emo, emotionCheckBoxes[i-1] or self.controls.emotionLabel)
+		end
 		emotionCheckBoxes[i] = emoCtl
 		self.controls["emotionCheckbox"..emo] = emoCtl
 	end
 
 	self:BuildSortOrder()
 	self.listBuildFlag = true
-end)
+	return self
+end
 
 ---@param node table @The notable node to check
 ---@return boolean @Whether the notable matches the type and search filters.
@@ -135,7 +147,7 @@ end
 
 function NotableDBClass:BuildSortOrder()
 	wipeTable(self.sortDropList)
-	for id,stat in pairs(data.powerStatList) do
+	for id, stat in ipairs(data.powerStatList) do
 		if not stat.ignoreForItems then
 			t_insert(self.sortDropList, {
 				label="Sort by "..stat.label,
@@ -159,16 +171,8 @@ function NotableDBClass:BuildSortOrder()
 end
 
 function NotableDBClass:CalculatePowerStat(selection, original, modified)
-	if modified.Minion then
-		original = original.Minion
-		modified = modified.Minion
-	end
-	local originalValue = original[selection.stat] or 0
-	local modifiedValue = modified[selection.stat] or 0
-	if selection.transform then
-		originalValue = selection.transform(originalValue)
-		modifiedValue = selection.transform(modifiedValue)
-	end
+	local originalValue = data.powerStatList.GetFromOutput(original, selection)
+	local modifiedValue = data.powerStatList.GetFromOutput(modified, selection)
 	return originalValue - modifiedValue
 end
 

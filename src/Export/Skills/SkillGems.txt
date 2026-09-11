@@ -37,7 +37,6 @@ Fury of the Mountain          		----		BearFuryOfTheMountainPlayer
 Gas Grenade                   		----		ToxicGrenadePlayer
 Hammer of the Gods            		----		HammerOfTheGodsPlayer
 Herald of Ash                 		----		HeraldOfAshPlayer
-Herald of Ash                 		----		UniqueHeraldOfAshPlayer
 Herald of Blood               		----		HeraldOfBloodPlayer
 Infernal Cry                  		----		InfernalCryPlayer	InfernalCryCorpseExplosionPlayer
 Iron Ward                     		----		IronWardPlayer	IronWardNovaPlayer
@@ -343,7 +342,6 @@ Gas Arrow                     		----		GasArrowPlayer
 Glacial Lance                 		----		GlacialLancePlayer
 Herald of Plague              		----		HeraldOfPlaguePlayer
 Herald of Thunder             		----		HeraldOfThunderPlayer
-Herald of Thunder             		----		UniqueHeraldOfThunderPlayer
 Ice Shot                      		----		IceShotPlayer
 Ice-Tipped Arrows             		----		IceTippedArrowsPlayer	IceTippedArrowsIceFragmentPlayer
 Lightning Arrow               		----		LightningArrowPlayer
@@ -552,6 +550,7 @@ Window of Opportunity II      		----		SupportWindowOfOpportunityPlayerTwo
 Explosive Demise              		----		DestructiveLinkSkeletonBombadierMinion
 
 						--------- Active Intelligence ---------
+Abyssal Pact                  		----		AbyssalPactPlayer
 Arc                           		----		ArcPlayer
 Archmage                      		----		ArchmagePlayer
 Arctic Armour                 		----		ArcticArmourPlayer
@@ -616,7 +615,6 @@ Grim Feast                    		----		GrimFeastPlayer	GrimFeastResummonPlayer
 Hand of Chayula               		----		HandOfChayulaPlayer	SupportHandOfChayulaPlayer
 Heart of Ice                  		----		HeartOfIcePlayer
 Herald of Ice                 		----		HeraldOfIcePlayer
-Herald of Ice                 		----		UniqueHeraldOfIcePlayer
 Hexblast                      		----		HexblastPlayer
 His Foul Emergence            		----		HisFoulEmergencePlayer
 His Scattering Calamity       		----		ScatteringCalamityPlayer
@@ -684,6 +682,7 @@ Temporal Chains               		----		TemporalChainsPlayer
 Trinity                       		----		TrinityPlayer
 Unearth                       		----		UnearthPlayer
 Unleash                       		----		UnleashPlayer
+Untether                      		----		AbyssalLivingBomb
 Vaulting Impact               		----		VaultingImpactPlayer
 Volatile Dead                 		----		VolatileDeadPlayer
 Vulnerability                 		----		VulnerabilityPlayer
@@ -706,7 +705,6 @@ Arbiter's Ignition            		----		SupportArbitersIgnitionPlayer
 Arcane Surge                  		----		SupportArcaneSurgePlayer
 Astral Projection             		----		SupportAstralProjectionPlayer
 Atziri's Allure               		----		SupportAtzirisAllurePlayer
-Atziri's Call                 		----		SupportAtzirisCallPlayer	TriggeredAtzirisCallPlayer
 Atziri's Communion            		----		SupportAtzirisCommunionPlayer
 Bhatair's Vengeance           		----		SupportBhatairsVengeancePlayer
 Bidding I                     		----		SupportBiddingPlayer
@@ -945,6 +943,9 @@ Future-Past                   		----		FuturePastPlayer
 Gemini Surge                  		----		GeminiSurgePlayer
 Grenade                       		----		MeleeGrenadeLauncherPlayer
 Grim Pillars                  		----		GrimPillarsPlayer
+Herald of Ash                 		----		UniqueHeraldOfAshPlayer
+Herald of Ice                 		----		UniqueHeraldOfIcePlayer
+Herald of Thunder             		----		UniqueHeraldOfThunderPlayer
 Hollow Focus                  		----		HollowFocusPlayer
 Hollow Form                   		----		MetaHollowFormPlayer	SupportHollowFormPlayer
 Hollow Resonance              		----		HollowResonancePlayer

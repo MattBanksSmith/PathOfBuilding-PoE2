@@ -7,8 +7,6 @@ Atziri's Rule
 Reflecting Staff
 Source: Drops from unique{Atziri's Vault} in normal{Vaal Temple}
 League: Fate of the Vaal
-Implicits: 1
-Grants Skill: Level (1-20) Mirror of Refraction
 UniqueMaximumLifeIncrease8
 UniqueGlobalCorruptedSpellSkillLevel1
 UniqueIncreasedCastSpeed20
@@ -18,8 +16,6 @@ UniqueSpellsThatCostLifeGainDamageAsExtraPhys1
 The Burden of Shadows
 Chiming Staff
 Source: Drops from unique{The King in the Mists} in normal{Crux of Nothingness}
-Implicits: 1
-Grants Skill: Level (1-20) Sigil of Power
 UniqueIncreasedCastSpeed11
 UniqueLifeCost1
 UniqueDamageGainedAsChaosPerCost1
@@ -28,9 +24,6 @@ Dusk Vigil
 Ashen Staff
 Variant: Pre 0.4.0
 Variant: Current
-Implicits: 2
-Grants Skill: Level (1-20) Firebolt
-Grants Skill: Level (1-20) Ember Fusillade
 {variant:2}UniqueDamageGainedAsFire3
 {variant:1}UniqueSpellDamageOnWeapon3[60,80]
 {variant:2}UniqueSpellDamageOnWeapon3
@@ -42,21 +35,16 @@ Earthbound
 Voltaic Staff
 Variant: Pre 0.4.0
 Variant: Current
-Implicits: 2
-Grants Skill: Level (1-20) Lightning Bolt
-Grants Skill: Level (1-20) Spark
 {variant:1}UniqueLightningDamageOnWeapon1
 {variant:2}UniqueSpellDamageOnWeapon11
-UniqueIncreasedCastSpeed4
-UniqueManaRegeneration6
+UniqueIncreasedCastSpeed10
+UniqueManaRegeneration25
 {variant:2}UniqueShockChanceIncrease4
 UniqueTriggerSparkOnKillingShockedEnemy1
 ]],[[
 The Raven's Flock
 Perching Staff
 League: Runes of Aldur
-Implicits: 1
-Grants Skill: Level (1-20) Spiraling Conspiracy
 UniqueIncreasedCastSpeed22
 UniqueIntelligence47
 UniqueMinionDamage3
@@ -67,8 +55,6 @@ The Searing Touch
 Pyrophyte Staff
 Variant: Pre 0.4.0
 Variant: Current
-Implicits: 1
-Grants Skill: Level (1-20) Living Bomb
 UniqueFireDamageOnWeapon1
 UniqueIncreasedCastSpeed4
 UniqueIgniteChanceIncrease1
@@ -78,23 +64,19 @@ UniqueIgniteEffect2
 Sire of Shards
 Chiming Staff
 League: Dawn of the Hunt
-Implicits: 1
-Grants Skill: Level (1-20) Sigil of Power
 UniqueSpellDamageOnWeapon7
-UniqueIncreasedCastSpeed4
+UniqueIncreasedCastSpeed13
 UniqueAllResistances22
-LightRadiusUniqueStaff10_
+UniqueLightRadius18
 UniqueSpellAdditionalProjectilesInCircle1
 ]],[[
 Taryn's Shiver
 Gelid Staff
 Variant: Pre 0.4.0
 Variant: Current
-Implicits: 1
-Grants Skill: Level (1-20) Freezing Shards
 {variant:1}UniqueColdDamageOnWeapon1
 {variant:2}UniqueSpellDamageOnWeapon10
-UniqueIncreasedCastSpeed4
+UniqueIncreasedCastSpeed5
 {variant:1}UniqueFreezeDamageIncrease1[100,100]
 {variant:2}UniqueFreezeDamageIncrease1
 {variant:1}UniqueFrozenMonstersTakeIncreasedDamage1[50,50]
@@ -105,9 +87,7 @@ Permafrost Staff
 League: Dawn of the Hunt
 Variant: Pre 0.4.0
 Variant: Current
-Implicits: 2
-Grants Skill: Level (1-20) Heart of Ice
-Grants Skill: Level (1-20) Icestorm
+UniqueGrantsIcestormSkill
 {variant:1}UniqueGlobalColdSpellGemsLevel1[2,4]
 {variant:2}UniqueGlobalColdSpellGemsLevel1
 UniqueIncreasedCastSpeed16
@@ -141,8 +121,6 @@ UniqueTriggersRefundEnergySpent1
 Duality
 Warding Quarterstaff
 League: Runes of Aldur
-Implicits: 1
-QuarterstaffImplicitRunicWard1
 UniqueLocalIncreasedPhysicalDamagePercent25
 UniqueLocalCriticalMultiplier3
 UniqueLocalIncreasedAttackSpeed32
@@ -157,7 +135,7 @@ Variant: Current
 {variant:2}UniqueLocalAddedLightningDamage5
 UniqueLocalCriticalStrikeChance2
 UniqueLocalIncreasedAttackSpeed9
-UniqueManaRegeneration13
+UniqueManaRegeneration17
 UniqueHalvedSpiritReservation1
 ]],[[
 Nazir's Judgement
@@ -167,7 +145,7 @@ Variant: Pre 0.3.0
 Variant: Current
 {variant:1}UniqueLocalIncreasedPhysicalDamagePercent4
 {variant:2,3}UniqueLocalAddedPhysicalDamage13
-UniqueIncreasedAccuracy2
+UniqueLocalIncreasedAccuracy4
 UniqueStunDuration1
 UniqueLocalDazeBuildup1
 {variant:3}UniqueMeleeDamageAgainstStunnedEnemies1
@@ -176,8 +154,6 @@ Pillar of the Caged God
 Variant: Pre 0.2.0
 Variant: Current
 Long Quarterstaff
-Implicits: 1
-QuarterstaffWeaponRange1
 {variant:1}UniqueAttackAreaOfEffectPerIntelligence1[2,2]
 {variant:2}UniqueAttackAreaOfEffectPerIntelligence1
 {variant:1}UniqueAttackSpeedPerDexterity1[2,2]
@@ -193,8 +169,8 @@ Variant: Current
 {variant:2}UniqueLocalAddedFireDamage3
 {variant:2}UniqueLocalIncreasedAccuracy6
 UniqueFireResist13
-UniqueIgniteChanceIncrease1
-UniqueLightRadius7
+UniqueIgniteChanceIncrease2
+UniqueLightRadius8
 ]],[[
 The Unborn Lich
 Ravenous Staff
@@ -202,6 +178,7 @@ League: Rise of the Abyssal
 Has Alt Variant: true
 Has Alt Variant Two: true
 Has Alt Variant Three: true
+Crafted: true
 Selected Variant: 7
 Selected Alt Variant: 8
 Selected Alt Variant Two: 9
@@ -218,15 +195,13 @@ Variant: Chaos Damage and Curse
 Variant: Spell Physical Damage and Bleed Chance
 Variant: Chaos Damage and Explode
 Variant: Unholy Might
-Implicits: 1
-Grants Skill: Level (1-20) Feast of Flesh
 UniqueDesecratedModEffect1
-{variant:1}Grants Skill: Level (1-20) His Dark Horizon
-{variant:2}Grants Skill: Level (1-20) His Foul Emergence
-{variant:3}Grants Skill: Level (1-20) His Grave Command
-{variant:4}Grants Skill: Level (1-20) His Scattering Calamity
-{variant:5}Grants Skill: Level (1-20) His Vile Intrusion
-{variant:6}Grants Skill: Level (1-20) His Winnowing Flame
+{variant:1}UniqueKulemakHisDarkHorizon_1
+{variant:2}UniqueKulemakHisFoulEmergence_1
+{variant:3}UniqueKulemakHisGraveCommand_1
+{variant:4}UniqueKulemakHisScatteringCalamity_1
+{variant:5}UniqueKulemakHisVileIntrusion_1
+{variant:6}UniqueKulemakHisWinnowingFlame_1
 {variant:7}UniqueKulemakElementalDamageEleAilmentDuration_1
 {variant:8}UniqueKulemakSpiritAndSpiritReservationEfficiency_1
 {variant:9}UniqueKulemakChaosDamageCurseLowersChaosRes_1

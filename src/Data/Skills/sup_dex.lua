@@ -3,8 +3,8 @@
 -- Dexterity support gems
 -- Skill data (c) Grinding Gear Games
 --
-local skills, mod, flag, skill = ...
-
+			return function(skills, mod, flag, skill)
+---@cast mod SkillModFunction
 skills["SupportAdhesiveGrenadesPlayer"] = {
 	name = "Adhesive Grenades I",
 	description = "Supports Grenade Skills. Grenades from Supported Skills do not bounce, instead halting movement where they intially land, but doing lower damage when they detonate.",
@@ -667,6 +667,8 @@ skills["PlagueBurstPlayer"] = {
 	castTime = 1,
 	qualityStats = {
 	},
+	altQualityStats = {
+	},
 	levels = {
 		[1] = { cooldown = 0.1, levelRequirement = 0, storedUses = 1, cost = { Mana = 0, }, },
 	},
@@ -763,6 +765,8 @@ skills["TriggeredCaltropsPlayer"] = {
 	skillTypes = { [SkillType.Triggerable] = true, [SkillType.Triggered] = true, [SkillType.InbuiltTrigger] = true, [SkillType.Damage] = true, [SkillType.Area] = true, [SkillType.Projectile] = true, [SkillType.ProjectileNoCollision] = true, [SkillType.SkillGrantedBySupport] = true, [SkillType.Hazard] = true, [SkillType.Duration] = true, [SkillType.CannotChain] = true, [SkillType.Attack] = true, [SkillType.GroundTargetedProjectile] = true, [SkillType.NoAttackOrCastTime] = true, [SkillType.AttackInPlace] = true, },
 	castTime = 1,
 	qualityStats = {
+	},
+	altQualityStats = {
 	},
 	levels = {
 		[1] = { attackTime = 1, levelRequirement = 0, cost = { Mana = 0, }, },
@@ -1005,6 +1009,8 @@ skills["TriggeredChargedMarkPlayer"] = {
 	skillTypes = { [SkillType.Spell] = true, [SkillType.Area] = true, [SkillType.Damage] = true, [SkillType.Triggered] = true, [SkillType.Triggerable] = true, [SkillType.InbuiltTrigger] = true, [SkillType.Duration] = true, [SkillType.AreaSpell] = true, [SkillType.AttackInPlace] = true, [SkillType.SkillGrantedBySupport] = true, },
 	castTime = 0,
 	qualityStats = {
+	},
+	altQualityStats = {
 	},
 	levels = {
 		[1] = { levelRequirement = 0, cost = { Mana = 0, }, },
@@ -2037,6 +2043,8 @@ skills["TriggeredLightningDetonateDeadPlayer"] = {
 	castTime = 0,
 	qualityStats = {
 	},
+	altQualityStats = {
+	},
 	levels = {
 		[1] = { cooldown = 0.3, levelRequirement = 0, storedUses = 5, },
 		[2] = { cooldown = 0.295, levelRequirement = 0, storedUses = 5, },
@@ -2304,7 +2312,7 @@ skills["SupportFrenziedRipostePlayer"] = {
 }
 skills["SupportFrozenSpitePlayer"] = {
 	name = "Frozen Spite",
-	description = "Supports Attack Skills, causing them to create Ice Fragments on killing Frozen Enemies. Cannot Support Totem Skills and does not modify Skills used by Minions.",
+	description = "Supports Skills that Hit enemies, causing them to create Ice Fragments on killing Frozen Enemies. Cannot Support Totem Skills and does not modify Skills used by Minions.",
 	color = 2,
 	support = true,
 	requireSkillTypes = { SkillType.Attack, },
@@ -2339,6 +2347,8 @@ skills["TriggeredSupportFrozenSpiteIceFragmentPlayer"] = {
 	skillTypes = { [SkillType.Triggerable] = true, [SkillType.Triggered] = true, [SkillType.InbuiltTrigger] = true, [SkillType.Projectile] = true, [SkillType.DetonatesAfterTime] = true, [SkillType.Area] = true, [SkillType.Cold] = true, [SkillType.SkillGrantedBySupport] = true, [SkillType.FrozenSpite] = true, [SkillType.AttackInPlace] = true, },
 	castTime = 0,
 	qualityStats = {
+	},
+	altQualityStats = {
 	},
 	levels = {
 		[1] = { baseMultiplier = 0.75, levelRequirement = 0, cost = { Mana = 0, }, },
@@ -3221,6 +3231,7 @@ skills["SupportEmpoweredCullPlayer"] = {
 	levels = {
 		[1] = { levelRequirement = 0, manaMultiplier = 20, },
 	},
+	legacy = true,
 	statSets = {
 		[1] = {
 			label = "Murderous Intent",
@@ -3965,6 +3976,8 @@ skills["TriggeredPoisonSporesPustule"] = {
 	skillTypes = { [SkillType.Area] = true, [SkillType.Duration] = true, [SkillType.Chaos] = true, [SkillType.DetonatesAfterTime] = true, [SkillType.Buff] = true, [SkillType.Cooldown] = true, [SkillType.Attack] = true, [SkillType.NoAttackOrCastTime] = true, [SkillType.Physical] = true, [SkillType.Plant] = true, [SkillType.SkillGrantedBySupport] = true, },
 	castTime = 1,
 	qualityStats = {
+	},
+	altQualityStats = {
 	},
 	levels = {
 		[1] = { cooldown = 0.1, levelRequirement = 0, storedUses = 1, cost = { Mana = 0, }, },
@@ -5774,6 +5787,8 @@ skills["KnockbackWavePlayer"] = {
 	castTime = 1,
 	qualityStats = {
 	},
+	altQualityStats = {
+	},
 	levels = {
 		[1] = { levelRequirement = 0, },
 	},
@@ -5877,4 +5892,4 @@ skills["SupportWindowOfOpportunityPlayerTwo"] = {
 			},
 		},
 	}
-}
+}			end

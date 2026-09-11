@@ -3,7 +3,8 @@
 -- Strength support gems
 -- Skill data (c) Grinding Gear Games
 --
-local skills, mod, flag, skill = ...
+return function(skills, mod, flag, skill)
+---@cast mod SkillModFunction
 #skill SupportAftershockChancePlayer
 #set SupportAftershockChancePlayer
 #mods
@@ -272,6 +273,7 @@ statMap = {
 #skillEnd
 
 #skill SupportBloodlustPlayer
+legacy = true
 #set SupportBloodlustPlayer
 statMap = {
 	["support_bloodlust_melee_physical_damage_+%_final_vs_bleeding_enemies"] = {
@@ -1124,6 +1126,7 @@ statMap = {
 #skillEnd
 
 #skill SupportLastingGroundPlayer
+legacy = true
 #set SupportLastingGroundPlayer
 #mods
 #skillEnd
@@ -1720,6 +1723,7 @@ statMap = {
 #skillEnd
 
 #skill SupportUnderminePlayer
+legacy = true
 #set SupportUnderminePlayer
 #mods
 #skillEnd
@@ -1840,3 +1844,4 @@ statMap = {
 },
 #mods
 #skillEnd
+end
